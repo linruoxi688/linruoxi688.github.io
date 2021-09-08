@@ -20,25 +20,23 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="SpringBoot框架的基本结构1.总框架预览工程大部分代码存放于src文件夹中，与之同级的有maven的配置文件pom.xml。src中有java和resource两个主要文件夹，java文件夹中存放的是springboot项目的主要代码部分，resource中存放的是项目的一些配置信息，如application.yml。 2.java模块中的各层代码详解①controller层control">
+  <meta name="description" content="1.在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。2.将生成的md文件放到source下的_posts文件夹中 3.在你存放博客的blog文件夹目录下右击调出git，执行hexo g（generate）进行静态部署，然后输入hexo s（server）启动本地服务器，用于预览文章。最后执行hexo d（deploy）生成网页的静态文">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringBoot的基本结构">
-<meta property="og:url" content="http://example.com/2021/09/08/SpringBoot/index.html">
+<meta property="og:title" content="hexo发布文章">
+<meta property="og:url" content="http://example.com/2021/09/08/%E5%9C%A8%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%8A%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/index.html">
 <meta property="og:site_name" content="知足的小窝">
-<meta property="og:description" content="SpringBoot框架的基本结构1.总框架预览工程大部分代码存放于src文件夹中，与之同级的有maven的配置文件pom.xml。src中有java和resource两个主要文件夹，java文件夹中存放的是springboot项目的主要代码部分，resource中存放的是项目的一些配置信息，如application.yml。 2.java模块中的各层代码详解①controller层control">
+<meta property="og:description" content="1.在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。2.将生成的md文件放到source下的_posts文件夹中 3.在你存放博客的blog文件夹目录下右击调出git，执行hexo g（generate）进行静态部署，然后输入hexo s（server）启动本地服务器，用于预览文章。最后执行hexo d（deploy）生成网页的静态文">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/56826fb0680d41608ec3c0481f6e58f2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2c4fff62882d4a938b00c987d20e2d0d.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/fd21cc8323c4403492c658d84828f6c8.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/a7d2180d4e514622850371162cbdbaf4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="article:published_time" content="2021-09-08T08:27:35.000Z">
-<meta property="article:modified_time" content="2021-09-08T11:04:37.658Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/bfef01eda8a745b4afd51eed52891dde.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d55705829d0340c19028fbeb010cfb55.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="article:published_time" content="2021-09-08T11:36:35.000Z">
+<meta property="article:modified_time" content="2021-09-08T11:36:30.077Z">
 <meta property="article:author" content="知足">
-<meta property="article:tag" content="java">
+<meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/56826fb0680d41608ec3c0481f6e58f2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/bfef01eda8a745b4afd51eed52891dde.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
 
-<link rel="canonical" href="http://example.com/2021/09/08/SpringBoot/">
+<link rel="canonical" href="http://example.com/2021/09/08/%E5%9C%A8%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%8A%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/">
 
 
 <script id="page-configurations">
@@ -51,7 +49,7 @@
   };
 </script>
 
-  <title>SpringBoot的基本结构 | 知足的小窝</title>
+  <title>hexo发布文章 | 知足的小窝</title>
   
 
 
@@ -171,7 +169,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/08/SpringBoot/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/08/%E5%9C%A8%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%8A%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/%E5%B8%86%E6%B3%A2.jfif">
@@ -184,7 +182,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          SpringBoot的基本结构
+          hexo发布文章
         </h1>
 
         <div class="post-meta">
@@ -195,7 +193,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-09-08 16:27:35 / 修改时间：19:04:37" itemprop="dateCreated datePublished" datetime="2021-09-08T16:27:35+08:00">2021-09-08</time>
+              <time title="创建时间：2021-09-08 19:36:35 / 修改时间：19:36:30" itemprop="dateCreated datePublished" datetime="2021-09-08T19:36:35+08:00">2021-09-08</time>
             </span>
 
           
@@ -209,12 +207,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="SpringBoot框架的基本结构"><a href="#SpringBoot框架的基本结构" class="headerlink" title="SpringBoot框架的基本结构"></a>SpringBoot框架的基本结构</h2><h6 id="1-总框架预览"><a href="#1-总框架预览" class="headerlink" title="1.总框架预览"></a>1.总框架预览</h6><p>工程大部分代码存放于src文件夹中，与之同级的有maven的配置文件pom.xml。src中有java和resource两个主要文件夹，java文件夹中存放的是springboot项目的主要代码部分，resource中存放的是项目的一些配置信息，如application.yml。<br><img src="https://img-blog.csdnimg.cn/56826fb0680d41608ec3c0481f6e58f2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
-<h5 id="2-java模块中的各层代码详解"><a href="#2-java模块中的各层代码详解" class="headerlink" title="2.java模块中的各层代码详解"></a>2.java模块中的各层代码详解</h5><h6 id="①controller层"><a href="#①controller层" class="headerlink" title="①controller层"></a>①controller层</h6><p>controller的概念在mvc中就已经存在，一般指控制部分。对view层提交的请求设置对应的servelet进行特定处理。<br><img src="https://img-blog.csdnimg.cn/2c4fff62882d4a938b00c987d20e2d0d.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
-<h6 id="②entity层"><a href="#②entity层" class="headerlink" title="②entity层"></a>②entity层</h6><p>entity层是实体类层，一般与所连接的数据库中每个表对应。需要注意同时应该生成getter setter方法和构造方法。</p>
-<h6 id="③mapper层"><a href="#③mapper层" class="headerlink" title="③mapper层"></a>③mapper层</h6><p>mapper层中定义的是对数据库的操作，一般表现为接口形式。<img src="https://img-blog.csdnimg.cn/fd21cc8323c4403492c658d84828f6c8.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
-<h6 id="④service层"><a href="#④service层" class="headerlink" title="④service层"></a>④service层</h6><p>应用服务层，在其中创建mapper对象来进行进一步的包装。在项目结构不是十分复杂的情况下，是可有可无的。<br><img src="https://img-blog.csdnimg.cn/a7d2180d4e514622850371162cbdbaf4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
-
+        <h5 id="1-在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。"><a href="#1-在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。" class="headerlink" title="1.在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。"></a>1.在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。<img src="https://img-blog.csdnimg.cn/bfef01eda8a745b4afd51eed52891dde.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="就像这样"></h5><h5 id="2-将生成的md文件放到source下的-posts文件夹中"><a href="#2-将生成的md文件放到source下的-posts文件夹中" class="headerlink" title="2.将生成的md文件放到source下的_posts文件夹中"></a>2.将生成的md文件放到source下的_posts文件夹中</h5><p><img src="https://img-blog.csdnimg.cn/d55705829d0340c19028fbeb010cfb55.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
+<h5 id="3-在你存放博客的blog文件夹目录下右击调出git，执行hexo-g（generate）进行静态部署，然后输入hexo-s（server）启动本地服务器，用于预览文章。最后执行hexo-d（deploy）生成网页的静态文件，并部署到指定仓库。这样，一个博客就成功发布到你的网站上啦！"><a href="#3-在你存放博客的blog文件夹目录下右击调出git，执行hexo-g（generate）进行静态部署，然后输入hexo-s（server）启动本地服务器，用于预览文章。最后执行hexo-d（deploy）生成网页的静态文件，并部署到指定仓库。这样，一个博客就成功发布到你的网站上啦！" class="headerlink" title="3.在你存放博客的blog文件夹目录下右击调出git，执行hexo g（generate）进行静态部署，然后输入hexo s（server）启动本地服务器，用于预览文章。最后执行hexo d（deploy）生成网页的静态文件，并部署到指定仓库。这样，一个博客就成功发布到你的网站上啦！"></a>3.在你存放博客的blog文件夹目录下右击调出git，执行hexo g（generate）进行静态部署，然后输入hexo s（server）启动本地服务器，用于预览文章。最后执行hexo d（deploy）生成网页的静态文件，并部署到指定仓库。这样，一个博客就成功发布到你的网站上啦！</h5>
     </div>
 
     
@@ -223,7 +217,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/java/" rel="tag"># java</a>
+              <a href="/tags/hexo/" rel="tag"># hexo</a>
           </div>
 
         
@@ -232,13 +226,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/07/19/pintos/" rel="prev" title="pintos">
-      <i class="fa fa-chevron-left"></i> pintos
+    <a href="/2021/09/08/SpringBoot/" rel="prev" title="SpringBoot的基本结构">
+      <i class="fa fa-chevron-left"></i> SpringBoot的基本结构
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/09/08/%E5%9C%A8%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%8A%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/" rel="next" title="hexo发布文章">
-      hexo发布文章 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -297,7 +288,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBoot%E6%A1%86%E6%9E%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">SpringBoot框架的基本结构</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-%E6%80%BB%E6%A1%86%E6%9E%B6%E9%A2%84%E8%A7%88"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">1.总框架预览</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-java%E6%A8%A1%E5%9D%97%E4%B8%AD%E7%9A%84%E5%90%84%E5%B1%82%E4%BB%A3%E7%A0%81%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">2.java模块中的各层代码详解</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E2%91%A0controller%E5%B1%82"><span class="nav-number">1.0.0.1.1.</span> <span class="nav-text">①controller层</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E2%91%A1entity%E5%B1%82"><span class="nav-number">1.0.0.1.2.</span> <span class="nav-text">②entity层</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E2%91%A2mapper%E5%B1%82"><span class="nav-number">1.0.0.1.3.</span> <span class="nav-text">③mapper层</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E2%91%A3service%E5%B1%82"><span class="nav-number">1.0.0.1.4.</span> <span class="nav-text">④service层</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%9C%A8csdn%E5%8D%9A%E5%AE%A2%E4%B8%8A%E6%88%96%E8%80%85%E6%98%AF%E5%85%B6%E4%BB%96%E5%B9%B3%E5%8F%B0%E4%B8%8A%E7%94%A8md%E6%A0%BC%E5%BC%8F%E7%BC%96%E5%86%99%E4%BD%A0%E7%9A%84%E6%96%87%E7%AB%A0%E3%80%82%E5%BD%93%E7%84%B6%EF%BC%8C%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8markdown%E5%B7%A5%E5%85%B7%E5%9C%A8%E6%9C%AC%E5%9C%B0%E7%BC%96%E5%86%99%E4%B9%9F%E6%98%AF%E5%8F%AF%E4%BB%A5%E7%9A%84%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">1.在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%B0%86%E7%94%9F%E6%88%90%E7%9A%84md%E6%96%87%E4%BB%B6%E6%94%BE%E5%88%B0source%E4%B8%8B%E7%9A%84-posts%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD"><span class="nav-number">2.</span> <span class="nav-text">2.将生成的md文件放到source下的_posts文件夹中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E5%9C%A8%E4%BD%A0%E5%AD%98%E6%94%BE%E5%8D%9A%E5%AE%A2%E7%9A%84blog%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9B%AE%E5%BD%95%E4%B8%8B%E5%8F%B3%E5%87%BB%E8%B0%83%E5%87%BAgit%EF%BC%8C%E6%89%A7%E8%A1%8Chexo-g%EF%BC%88generate%EF%BC%89%E8%BF%9B%E8%A1%8C%E9%9D%99%E6%80%81%E9%83%A8%E7%BD%B2%EF%BC%8C%E7%84%B6%E5%90%8E%E8%BE%93%E5%85%A5hexo-s%EF%BC%88server%EF%BC%89%E5%90%AF%E5%8A%A8%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E7%94%A8%E4%BA%8E%E9%A2%84%E8%A7%88%E6%96%87%E7%AB%A0%E3%80%82%E6%9C%80%E5%90%8E%E6%89%A7%E8%A1%8Chexo-d%EF%BC%88deploy%EF%BC%89%E7%94%9F%E6%88%90%E7%BD%91%E9%A1%B5%E7%9A%84%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0%E6%8C%87%E5%AE%9A%E4%BB%93%E5%BA%93%E3%80%82%E8%BF%99%E6%A0%B7%EF%BC%8C%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2%E5%B0%B1%E6%88%90%E5%8A%9F%E5%8F%91%E5%B8%83%E5%88%B0%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E4%B8%8A%E5%95%A6%EF%BC%81"><span class="nav-number">3.</span> <span class="nav-text">3.在你存放博客的blog文件夹目录下右击调出git，执行hexo g（generate）进行静态部署，然后输入hexo s（server）启动本地服务器，用于预览文章。最后执行hexo d（deploy）生成网页的静态文件，并部署到指定仓库。这样，一个博客就成功发布到你的网站上啦！</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

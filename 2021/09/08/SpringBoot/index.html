@@ -20,19 +20,24 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Pintos用户程序环境配置1.安装pintos 2.后续更新">
+  <meta name="description" content="SpringBoot框架的基本结构1.总框架预览工程大部分代码存放于src文件夹中，与之同级的有maven的配置文件pom.xml。src中有java和resource两个主要文件夹，java文件夹中存放的是springboot项目的主要代码部分，resource中存放的是项目的一些配置信息，如application.yml。 2.java模块中的各层代码详解①controller层control">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pintos">
-<meta property="og:url" content="http://example.com/2021/07/19/pintos/index.html">
+<meta property="og:title" content="知足的小窝">
+<meta property="og:url" content="http://example.com/2021/09/08/SpringBoot/index.html">
 <meta property="og:site_name" content="知足的小窝">
-<meta property="og:description" content="Pintos用户程序环境配置1.安装pintos 2.后续更新">
+<meta property="og:description" content="SpringBoot框架的基本结构1.总框架预览工程大部分代码存放于src文件夹中，与之同级的有maven的配置文件pom.xml。src中有java和resource两个主要文件夹，java文件夹中存放的是springboot项目的主要代码部分，resource中存放的是项目的一些配置信息，如application.yml。 2.java模块中的各层代码详解①controller层control">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-07-19T04:35:30.000Z">
-<meta property="article:modified_time" content="2021-09-08T08:22:59.952Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/56826fb0680d41608ec3c0481f6e58f2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2c4fff62882d4a938b00c987d20e2d0d.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/fd21cc8323c4403492c658d84828f6c8.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/a7d2180d4e514622850371162cbdbaf4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="article:published_time" content="2021-09-08T08:58:40.789Z">
+<meta property="article:modified_time" content="2021-09-08T08:58:41.567Z">
 <meta property="article:author" content="知足">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/56826fb0680d41608ec3c0481f6e58f2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center">
 
-<link rel="canonical" href="http://example.com/2021/07/19/pintos/">
+<link rel="canonical" href="http://example.com/2021/09/08/SpringBoot/">
 
 
 <script id="page-configurations">
@@ -45,7 +50,7 @@
   };
 </script>
 
-  <title>pintos | 知足的小窝</title>
+  <title> | 知足的小窝</title>
   
 
 
@@ -165,7 +170,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/19/pintos/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/08/SpringBoot/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/%E5%B8%86%E6%B3%A2.jfif">
@@ -178,7 +183,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          pintos
+          
         </h1>
 
         <div class="post-meta">
@@ -187,16 +192,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-07-19 12:35:30" itemprop="dateCreated datePublished" datetime="2021-07-19T12:35:30+08:00">2021-07-19</time>
+              <time title="创建时间：2021-09-08 16:58:40 / 修改时间：16:58:41" itemprop="dateCreated datePublished" datetime="2021-09-08T16:58:40+08:00">2021-09-08</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-08 16:22:59" itemprop="dateModified" datetime="2021-09-08T16:22:59+08:00">2021-09-08</time>
-              </span>
 
           
 
@@ -209,8 +208,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Pintos用户程序"><a href="#Pintos用户程序" class="headerlink" title="Pintos用户程序"></a>Pintos用户程序</h2><h4 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h4><p>1.安装pintos</p>
-<p>2.后续更新</p>
+        <h2 id="SpringBoot框架的基本结构"><a href="#SpringBoot框架的基本结构" class="headerlink" title="SpringBoot框架的基本结构"></a>SpringBoot框架的基本结构</h2><h6 id="1-总框架预览"><a href="#1-总框架预览" class="headerlink" title="1.总框架预览"></a>1.总框架预览</h6><p>工程大部分代码存放于src文件夹中，与之同级的有maven的配置文件pom.xml。src中有java和resource两个主要文件夹，java文件夹中存放的是springboot项目的主要代码部分，resource中存放的是项目的一些配置信息，如application.yml。<br><img src="https://img-blog.csdnimg.cn/56826fb0680d41608ec3c0481f6e58f2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
+<h5 id="2-java模块中的各层代码详解"><a href="#2-java模块中的各层代码详解" class="headerlink" title="2.java模块中的各层代码详解"></a>2.java模块中的各层代码详解</h5><h6 id="①controller层"><a href="#①controller层" class="headerlink" title="①controller层"></a>①controller层</h6><p>controller的概念在mvc中就已经存在，一般指控制部分。对view层提交的请求设置对应的servelet进行特定处理。<br><img src="https://img-blog.csdnimg.cn/2c4fff62882d4a938b00c987d20e2d0d.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
+<h6 id="②entity层"><a href="#②entity层" class="headerlink" title="②entity层"></a>②entity层</h6><p>entity层是实体类层，一般与所连接的数据库中每个表对应。需要注意同时应该生成getter setter方法和构造方法。</p>
+<h6 id="③mapper层"><a href="#③mapper层" class="headerlink" title="③mapper层"></a>③mapper层</h6><p>mapper层中定义的是对数据库的操作，一般表现为接口形式。<img src="https://img-blog.csdnimg.cn/fd21cc8323c4403492c658d84828f6c8.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
+<h6 id="④service层"><a href="#④service层" class="headerlink" title="④service层"></a>④service层</h6><p>应用服务层，在其中创建mapper对象来进行进一步的包装。在项目结构不是十分复杂的情况下，是可有可无的。<br><img src="https://img-blog.csdnimg.cn/a7d2180d4e514622850371162cbdbaf4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
 
     </div>
 
@@ -225,11 +227,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2021/09/08/SpringBoot/" rel="next" title="">
-       <i class="fa fa-chevron-right"></i>
+    <a href="/2021/07/19/pintos/" rel="prev" title="pintos">
+      <i class="fa fa-chevron-left"></i> pintos
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -288,7 +290,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pintos%E7%94%A8%E6%88%B7%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.</span> <span class="nav-text">Pintos用户程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-number">1.0.1.</span> <span class="nav-text">环境配置</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBoot%E6%A1%86%E6%9E%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">SpringBoot框架的基本结构</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-%E6%80%BB%E6%A1%86%E6%9E%B6%E9%A2%84%E8%A7%88"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">1.总框架预览</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-java%E6%A8%A1%E5%9D%97%E4%B8%AD%E7%9A%84%E5%90%84%E5%B1%82%E4%BB%A3%E7%A0%81%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">2.java模块中的各层代码详解</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E2%91%A0controller%E5%B1%82"><span class="nav-number">1.0.0.1.1.</span> <span class="nav-text">①controller层</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E2%91%A1entity%E5%B1%82"><span class="nav-number">1.0.0.1.2.</span> <span class="nav-text">②entity层</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E2%91%A2mapper%E5%B1%82"><span class="nav-number">1.0.0.1.3.</span> <span class="nav-text">③mapper层</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E2%91%A3service%E5%B1%82"><span class="nav-number">1.0.0.1.4.</span> <span class="nav-text">④service层</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

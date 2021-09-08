@@ -162,6 +162,69 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/08/SpringBoot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%B8%86%E6%B3%A2.jfif">
+      <meta itemprop="name" content="知足">
+      <meta itemprop="description" content="珍惜当下，把握未来">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知足的小窝">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/08/SpringBoot/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-08 16:58:40 / 修改时间：16:58:41" itemprop="dateCreated datePublished" datetime="2021-09-08T16:58:40+08:00">2021-09-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="SpringBoot框架的基本结构"><a href="#SpringBoot框架的基本结构" class="headerlink" title="SpringBoot框架的基本结构"></a>SpringBoot框架的基本结构</h2><h6 id="1-总框架预览"><a href="#1-总框架预览" class="headerlink" title="1.总框架预览"></a>1.总框架预览</h6><p>工程大部分代码存放于src文件夹中，与之同级的有maven的配置文件pom.xml。src中有java和resource两个主要文件夹，java文件夹中存放的是springboot项目的主要代码部分，resource中存放的是项目的一些配置信息，如application.yml。<br><img src="https://img-blog.csdnimg.cn/56826fb0680d41608ec3c0481f6e58f2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
+<h5 id="2-java模块中的各层代码详解"><a href="#2-java模块中的各层代码详解" class="headerlink" title="2.java模块中的各层代码详解"></a>2.java模块中的各层代码详解</h5><h6 id="①controller层"><a href="#①controller层" class="headerlink" title="①controller层"></a>①controller层</h6><p>controller的概念在mvc中就已经存在，一般指控制部分。对view层提交的请求设置对应的servelet进行特定处理。<br><img src="https://img-blog.csdnimg.cn/2c4fff62882d4a938b00c987d20e2d0d.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
+<h6 id="②entity层"><a href="#②entity层" class="headerlink" title="②entity层"></a>②entity层</h6><p>entity层是实体类层，一般与所连接的数据库中每个表对应。需要注意同时应该生成getter setter方法和构造方法。</p>
+<h6 id="③mapper层"><a href="#③mapper层" class="headerlink" title="③mapper层"></a>③mapper层</h6><p>mapper层中定义的是对数据库的操作，一般表现为接口形式。<img src="https://img-blog.csdnimg.cn/fd21cc8323c4403492c658d84828f6c8.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
+<h6 id="④service层"><a href="#④service层" class="headerlink" title="④service层"></a>④service层</h6><p>应用服务层，在其中创建mapper对象来进行进一步的包装。在项目结构不是十分复杂的情况下，是可有可无的。<br><img src="https://img-blog.csdnimg.cn/a7d2180d4e514622850371162cbdbaf4.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/19/pintos/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -185,10 +248,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-07-19 12:35:30 / 修改时间：12:37:05" itemprop="dateCreated datePublished" datetime="2021-07-19T12:35:30+08:00">2021-07-19</time>
+              <time title="创建时间：2021-07-19 12:35:30" itemprop="dateCreated datePublished" datetime="2021-07-19T12:35:30+08:00">2021-07-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-08 16:22:59" itemprop="dateModified" datetime="2021-09-08T16:22:59+08:00">2021-09-08</time>
+              </span>
 
           
 
@@ -202,6 +271,7 @@
 
       
           <h2 id="Pintos用户程序"><a href="#Pintos用户程序" class="headerlink" title="Pintos用户程序"></a>Pintos用户程序</h2><h4 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h4><p>1.安装pintos</p>
+<p>2.后续更新</p>
 
       
     </div>
@@ -285,7 +355,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -162,6 +162,204 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/24/js%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%B8%86%E6%B3%A2.jfif">
+      <meta itemprop="name" content="知足">
+      <meta itemprop="description" content="珍惜当下，把握未来">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知足的小窝">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/24/js%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">js的一些基础</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-11-24 23:36:15 / 修改时间：23:41:50" itemprop="dateCreated datePublished" datetime="2021-11-24T23:36:15+08:00">2021-11-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h3><ol>
+<li><p>== 和 ===的区别：<br>两个=判断相等，类型不等值相等也会判断为true。如 “1”和1<br>三个=则是绝对相等</p>
+</li>
+<li><p>判断是否为数字（NAN），不能使用NAN===NAN，需要使用isNAN()判断。<br><code>var a = 5 ; isNAN(a)</code></p>
+</li>
+<li><p>数组<br>定义：<code>var array=[1,2,3,&#39;hello&#39;,null]</code><br>或是 <code>new Array(1,2,3,&#39;hello&#39;,null)</code><br>取数组时，如果下标越界只会显示undefined。</p>
+<p>数组的长度是可以通过赋值改变的，如果赋的过小会导致元素丢失。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.length=<span class="number">2</span>; <span class="comment">//导致下标大于1的元素丢失</span></span><br></pre></td></tr></table></figure>
+<p>截取数组部分元素的方法.slice()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.slice(<span class="number">1</span>,<span class="number">4</span>) <span class="comment">//截取第二个到第四个，留头去尾</span></span><br></pre></td></tr></table></figure>
+<p>数组中元素的操作</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">array.push(<span class="string">&#x27;x&#x27;</span>) <span class="comment">//向数组尾部压入元素x</span></span><br><span class="line">array.pop() <span class="comment">//数组尾部弹出一个元素</span></span><br><span class="line">array.unshift(<span class="string">&#x27;x&#x27;</span>) <span class="comment">//在头部压入元素x</span></span><br><span class="line">array.shift() <span class="comment">//在头部弹出</span></span><br><span class="line">array.sort() <span class="comment">//排序数组</span></span><br><span class="line">array.reverse() <span class="comment">//反序数组</span></span><br><span class="line">array.concat([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]) <span class="comment">//拼接数组,不修改原数组，返回新的数组</span></span><br><span class="line">array.join(<span class="string">&#x27;-&#x27;</span>) <span class="comment">//以指定字符连接数组中的元素</span></span><br></pre></td></tr></table></figure></li>
+<li><p>对象<br>若干个键值对。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">	<span class="attr">name</span>:<span class="string">&quot;mike&quot;</span>,</span><br><span class="line">	<span class="attr">age</span>:<span class="number">18</span>,</span><br><span class="line">	<span class="attr">tags</span>:[<span class="string">&#x27;js&#x27;</span>,<span class="string">&#x27;html&#x27;</span>,<span class="string">&#x27;flutter&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line"> person.name <span class="comment">//取对象</span></span><br><span class="line"> <span class="keyword">delete</span> person.age <span class="comment">//删除对象中的属性</span></span><br><span class="line"> <span class="string">&#x27;age&#x27;</span> <span class="keyword">in</span> person <span class="comment">//判断属性是否在对象中</span></span><br><span class="line"> person.hasOwnProperty(<span class="string">&#x27;toString) //判断是否是自己定义的属性</span></span><br></pre></td></tr></table></figure></li>
+<li><p>var 和 let<br>let用于声明局部变量，所声明变量只在let命令所在代码块内有效。<br>var声明的变量是全局的。<br>使用<code>use strict</code>在js中设置严格检查模式。</p>
+</li>
+<li><p>1 变量提升</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> v=<span class="string">&#x27;Hello World&#x27;</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   alert(v);</span><br><span class="line">   <span class="keyword">var</span> v=<span class="string">&#x27;I love you&#x27;</span>;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<p>  为什么输出会是undefined？这就要提到js中的变量提升机制了。在定义<code>var v = &#39;I love you&#39;</code>时，实际上js把变量v提到了函数的top地方。也就是说，在function的第一行其实是存在一个隐形的定义 <code>var v;</code>的。<br>  let定义的变量不存在变量提升机制，且不允许重复声明。</p>
+</li>
+<li><p>字符串<br>定义 <code>var a = &#39;123&#39; 或是 var a =&quot;123&quot;</code><br>转义字符<code>\n \tab \&#39;</code>等，反斜杠后跟转义字符。<br>多行字符串使用``包裹。<br>模板字符串<code>let msg = &#39;hello,$&#123;name&#125;&#39;</code> name是另外的变量。<br>一些字符串操作函数:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">str.length <span class="comment">//获取字符串的长度</span></span><br><span class="line">str.toUpperCase() <span class="comment">//转换成大写 </span></span><br><span class="line">str.toLowerCase() <span class="comment">//转换成小写</span></span><br><span class="line">str.indexOf(<span class="string">&#x27;e&#x27;</span>) <span class="comment">//获取某个元素在数组的下标</span></span><br><span class="line">str.subString(<span class="number">1</span>,<span class="number">3</span>) <span class="comment">//截取第二到第四个字符串</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Set和Map<br> Set和Map是ES6中新增的数据结构。Set为无序不重复的数组，Map本质上是一组键值对的集合。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>([<span class="string">&#x27;name&#x27;</span>,<span class="string">&#x27;huijunyu&#x27;</span>],[<span class="string">&#x27;age&#x27;</span>,<span class="number">19</span>])</span><br><span class="line"><span class="keyword">var</span> name = map.get(<span class="string">&#x27;name&#x27;</span>) <span class="comment">//根据key拿value</span></span><br><span class="line">map.set(<span class="string">&#x27;age&#x27;</span>,<span class="number">20</span>) <span class="comment">//设置value</span></span><br><span class="line">map.delete(<span class="string">&#x27;name&#x27;</span>) <span class="comment">//删除指定key</span></span><br><span class="line">map.keys() map.values() map.entries</span><br><span class="line">map.has(<span class="string">&quot;key&quot;</span>) <span class="comment">//判断Map中是否有某个key对应value</span></span><br><span class="line">map.clear() <span class="comment">//清空map对象的内容</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Loop循环</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> array&#123;</span><br><span class="line"><span class="built_in">console</span>.log(array[i]) <span class="comment">//i为索引值</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">of</span> array&#123;</span><br><span class="line"><span class="built_in">console</span>.log(i) <span class="comment">//i为属性值</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> numbers = [<span class="number">45</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>];</span><br><span class="line"><span class="keyword">let</span> txt = <span class="string">&quot;&quot;</span>;</span><br><span class="line">numbers.forEach(myFunction);  <span class="comment">//forEach方法为每个数组元素调用一次函数	</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  txt += value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-函数"><a href="#2-函数" class="headerlink" title="2.函数"></a>2.函数</h3></li>
+<li><p>定义函数<br><code>function f1(x)&#123;&#125;</code><br><code>var f1 = function(x)&#123;&#125;</code></p>
+</li>
+<li><p>arguments rest 关键字<br>arguments包含了所有的参数，是一个数组。js的函数在接收参数时可以接收任意个，使用arguments可以进行全部参数的访问。<br>rest可以获取除了定义要接收的参数以外的其他参数。形式如下<br><code>function f1(a,b,...rest)&#123;&#125;</code><br>rest同样是一个数组。</p>
+</li>
+<li><p>apply函数<br>js中，apply函数可以改变this指针的指向。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="built_in">this</span>.name&#125; <span class="comment">//有点怪异，让它返回名字。本来的this是windows，找不到name。</span></span><br><span class="line"><span class="keyword">var</span> classA = &#123;</span><br><span class="line"><span class="attr">name</span>:<span class="string">&#x27;hjy&#x27;</span>,</span><br><span class="line"><span class="attr">age</span>:f1&#125;;</span><br><span class="line">f1.apply(classA,[]); <span class="comment">//this指针指向了classA</span></span><br></pre></td></tr></table></figure></li>
+<li><p>json对象<br>JSON(JavaScript Object Notation, JS 对象简谱) 是一种轻量级的数据交换格式。它是一个格式化的字符串，可以和js对象相互转化。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> user = &#123;</span><br><span class="line">	<span class="attr">name</span>:<span class="string">&#x27;hjy&#x27;</span>,</span><br><span class="line">	<span class="attr">age</span>:<span class="number">18</span>,</span><br><span class="line">	<span class="attr">sex</span>:<span class="string">&#x27;男&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> jsonUser = <span class="built_in">JSON</span>.stringify(user); <span class="comment">//js对象转json字符串</span></span><br><span class="line"><span class="keyword">var</span> obj = <span class="built_in">JSON</span>.parse(<span class="string">&#x27;&#123;&quot;name&quot;:&quot;hjy&quot;,&quot;age&quot;:18,&quot;sex&quot;:&quot;男&quot;&#125;&#x27;</span>) <span class="comment">//json字符串转js对象</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>要注意json和js对象的区别!</p>
+</blockquote>
+<h3 id="3、BOM和DOM"><a href="#3、BOM和DOM" class="headerlink" title="3、BOM和DOM"></a>3、BOM和DOM</h3><blockquote>
+<p>BOM</p>
+</blockquote>
+</li>
+<li><p>window 代表浏览器窗口<br><code>window.alert</code><br><code>window.innerHeight</code>等属性和方法</p>
+</li>
+<li><p>Navigatot 封装了浏览器的信息<br><code>navigator.platform</code><br><code>navigator.appName</code> Navigator可能会被人为修改，不建议用之中的属性判断和编写code</p>
+</li>
+<li><p>screen 代表屏幕<br><code>screen.width  screen.height</code></p>
+</li>
+<li><p>location 代表当前页面的URL信息<br><code>location.host  location.reload()   </code><br><code>location.assign(&#39;url&#39;) //设置新的地址</code></p>
+</li>
+<li><p>history 获取浏览器的历史记录<br><code>history.forward()  history.back()</code></p>
+</li>
+</ol>
+<blockquote>
+<p>DOM</p>
+</blockquote>
+<p>浏览器实际上就是一个DOM树，我们需要对它其中的一个个div，各种元素进行操作。</p>
+<ol>
+<li><p>获取DOM节点<br> <code>document.getElementById(&#39;id&#39;) //最常用的</code><br> <code>document.getElementByClassName(&#39;class&#39;)</code><br> <code>document.getElementByTagName(&#39;tag&#39;)</code></p>
+</li>
+<li><p>操作DOM节点<br><code>var a = document.getElementById(&#39;id&#39;)   a.innerText=&#39;text&#39; a.innerHTML=&#39;&lt;strong&gt;text&lt;/strong&gt;&#39;</code><br>innerHTML可以识别HTML标签<br><code>a.style.color=&#39;yellow&#39;</code><br>还可以操作节点的css属性</p>
+</li>
+<li><p>删除DOM结点<br>不能直接删除，要获取父节点，通过父节点删除</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> self = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;p1&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> father = p1.parentElement;</span><br><span class="line">father.removeChild(self)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建DOM节点</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> newP = <span class="built_in">document</span>.createElement(<span class="string">&#x27;p&#x27;</span>) <span class="comment">//创建一个p标签 </span></span><br><span class="line">newP.setAttribute(<span class="string">&#x27;id&#x27;</span>,<span class="string">&#x27;newP&#x27;</span>)</span><br><span class="line">newP.setAttribute(<span class="string">&#x27;innerText&#x27;</span>,<span class="string">&#x27;Hello World&#x27;</span>)</span><br><span class="line">list.append(newP) <span class="comment">//插入DOM结点</span></span><br></pre></td></tr></table></figure>
+<p> 更多DOM操作详见<a target="_blank" rel="noopener" href="https://www.w3school.com.cn/jsref/dom_obj_document.asp">W3C js Document</a></p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/08/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%B8%86%E6%B3%A2.jfif">
+      <meta itemprop="name" content="知足">
+      <meta itemprop="description" content="珍惜当下，把握未来">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知足的小窝">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/08/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">软件设计模式之工厂模式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-08 16:17:43" itemprop="dateCreated datePublished" datetime="2021-11-08T16:17:43+08:00">2021-11-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-24 23:40:55" itemprop="dateModified" datetime="2021-11-24T23:40:55+08:00">2021-11-24</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>什么是工厂模式？就是将本该创建的产品委托给一个个的工厂（factory）去创建。在工厂里对对象进行修改，解除耦合。</p>
+<h5 id="1-简单工厂模式"><a href="#1-简单工厂模式" class="headerlink" title="1.简单工厂模式"></a>1.简单工厂模式</h5><p>由工厂类，产品接口和具体产品三部分组成。<br><img src="https://img-blog.csdnimg.cn/b5fbf66639da43afa1c4c26376464c7f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="简单工厂例子-咖啡生产"><br>在工厂类中，定义createCoffee的方法，返回一个Coffee类型的对象。在方法中通过传入参数type的if判断来创建不同的咖啡子类，如美式，拿铁…<br>在store类中，只需要创建相应的简单工厂类的对象：<br><code>SimpleCoffeeFactory factory = new SimpleCoffeFactory(); Coffee coffee = factory.createCoffee(type);</code><br>返回的coffee即为需要制作的各种咖啡。</p>
+<p>简单工厂模式违反了开闭原则。当需要增加新的咖啡种类时，需要修改简单工厂类中的代码（if…)</p>
+<h5 id="2-工厂方法模式"><a href="#2-工厂方法模式" class="headerlink" title="2.工厂方法模式"></a>2.工厂方法模式</h5><p>为了解决简单工厂模式带来的问题——违反了开闭原则<br>定义一个用于创建对象的接口，让其子类决定实例化哪个产品对象。它包括 抽象工厂 具体工厂 抽象产品以及具体产品。<br><img src="https://img-blog.csdnimg.cn/fd5ffb416c4649a38b695548d2a5580f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>在调用时：<br><code>CoffeeFactory factory = new AmericanCoffeeFactory(); Coffee coffee = factory.createCoffee();</code><br>用户只需要知道具体的工厂名称即可。无需知道产品如何生产（隐藏在具体工厂中）。<br>满足开闭原则。<br>但是每增加一个产品就需要增加一个具体产品类和一个对应的具体工厂类，增加了复杂度。</p>
+<h5 id="3-抽象工厂模式"><a href="#3-抽象工厂模式" class="headerlink" title="3.抽象工厂模式"></a>3.抽象工厂模式</h5><p>当需要生产多层次多级别的产品？需要一个 综合性 的工厂。<br><img src="https://img-blog.csdnimg.cn/837a805ecd174bcebbe1613ad31f3757.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>美式：美式咖啡和抹茶慕斯<br>意大利：提拉米苏和拿铁咖啡<br>如何调用？<br><code>ItalyDessertFactory factory = new ItalyDessertFactory(); Coffee coffee = factory.createCoffee(); Dessert dessert = factory.createDessert();</code><br>由意大利工厂生产出来的咖啡和甜品是拿铁和提拉米苏。</p>
+<p>能让客户始终使用同一产品族的对象。<br>但是当产品族中添加产品（如添加：小食）时，所有的工厂都要改变。符合开闭原则？视情况讨论咯。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/08/%E5%9C%A8%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%8A%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -346,6 +544,175 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/08/flutter%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%B8%86%E6%B3%A2.jfif">
+      <meta itemprop="name" content="知足">
+      <meta itemprop="description" content="珍惜当下，把握未来">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知足的小窝">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/08/flutter%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%90%AD%E5%BB%BA/" class="post-title-link" itemprop="url">flutter项目的搭建</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-08 21:36:35" itemprop="dateCreated datePublished" datetime="2021-01-08T21:36:35+08:00">2021-01-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-24 23:39:17" itemprop="dateModified" datetime="2021-11-24T23:39:17+08:00">2021-11-24</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="配置一个flutter项目"><a href="#配置一个flutter项目" class="headerlink" title="配置一个flutter项目"></a>配置一个flutter项目</h1><h6 id="第一步-安装java的jdk"><a href="#第一步-安装java的jdk" class="headerlink" title="第一步 安装java的jdk"></a>第一步 安装java的jdk</h6><h6 id="第二步-安装Android-Studio"><a href="#第二步-安装Android-Studio" class="headerlink" title="第二步 安装Android Studio"></a>第二步 安装Android Studio</h6><h6 id="第三步-安装flutter的sdk"><a href="#第三步-安装flutter的sdk" class="headerlink" title="第三步 安装flutter的sdk"></a>第三步 安装flutter的sdk</h6><p>将flutter的bin目录配置到Path环境变量中。</p>
+<h6 id="第四步-打开Android-Studio，安装flutter插件"><a href="#第四步-打开Android-Studio，安装flutter插件" class="headerlink" title="第四步 打开Android Studio，安装flutter插件"></a>第四步 打开Android Studio，安装flutter插件</h6><h6 id="第五步-在Android-Studio中创建一个flutter项目，并在vscode中安装dart和flutter插件，在vscode中打开flutter文件。"><a href="#第五步-在Android-Studio中创建一个flutter项目，并在vscode中安装dart和flutter插件，在vscode中打开flutter文件。" class="headerlink" title="第五步 在Android Studio中创建一个flutter项目，并在vscode中安装dart和flutter插件，在vscode中打开flutter文件。"></a>第五步 在Android Studio中创建一个flutter项目，并在vscode中安装dart和flutter插件，在vscode中打开flutter文件。</h6><p><img src="https://img-blog.csdnimg.cn/20210108213621601.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2V1cGhyaW9h,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/03/flutte%E7%BB%99text%E6%96%87%E6%9C%AC%E8%AE%BE%E7%BD%AE%E5%93%8D%E5%BA%94%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%B8%86%E6%B3%A2.jfif">
+      <meta itemprop="name" content="知足">
+      <meta itemprop="description" content="珍惜当下，把握未来">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知足的小窝">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/03/flutte%E7%BB%99text%E6%96%87%E6%9C%AC%E8%AE%BE%E7%BD%AE%E5%93%8D%E5%BA%94%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">给flutter设置文本响应的几种方式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-03 23:04:35" itemprop="dateCreated datePublished" datetime="2021-01-03T23:04:35+08:00">2021-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-24 23:39:04" itemprop="dateModified" datetime="2021-11-24T23:39:04+08:00">2021-11-24</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h5 id="1-new-GestureDetector"><a href="#1-new-GestureDetector" class="headerlink" title="1.new GestureDetector()"></a>1.new GestureDetector()</h5><p>利用GestureDetector中的ontap()事件进行文本点击响应。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">child: GestureDetector(</span><br><span class="line">          child: Text(</span><br><span class="line">            <span class="keyword">this</span>.title,</span><br><span class="line">            style: TextStyle(color: Colors.white, fontSize: <span class="number">18.0</span>),</span><br><span class="line">          ),</span><br><span class="line">          onTap: <span class="keyword">this</span>.rightClick,</span><br><span class="line">        ),</span><br><span class="line">rightClick: () &#123;</span><br><span class="line">    print(<span class="string">&quot;点我干什么&quot;</span>);</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<h5 id="2-TextSpan-部件"><a href="#2-TextSpan-部件" class="headerlink" title="2.TextSpan()部件"></a>2.TextSpan()部件</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">child: Text.rich(</span><br><span class="line">              TextSpan(</span><br><span class="line">                children: [</span><br><span class="line">                  TextSpan(</span><br><span class="line">                    text: <span class="string">&quot;hello&quot;</span>,</span><br><span class="line">                    style: TextStyle(fontSize: <span class="number">29</span>, color: Colors.red),</span><br><span class="line">                  ),</span><br><span class="line">                  TextSpan(</span><br><span class="line">                    text: <span class="string">&quot;world&quot;</span>,</span><br><span class="line">                    style: TextStyle(fontSize: <span class="number">59</span>, color: Colors.yellow),</span><br><span class="line">                    <span class="comment">// 设置点击事件</span></span><br><span class="line">                    recognizer: TapGestureRecognizer()</span><br><span class="line">                      ..onTap = () &#123;</span><br><span class="line">                        debugPrint(<span class="string">&quot;$&#123;i++&#125;&quot;</span>);</span><br><span class="line">                      &#125;,</span><br><span class="line">                  ),</span><br><span class="line">                ],</span><br><span class="line">              ),</span><br></pre></td></tr></table></figure>
+<h5 id="3-Listener监听触摸事件"><a href="#3-Listener监听触摸事件" class="headerlink" title="3.Listener监听触摸事件"></a>3.Listener监听触摸事件</h5><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>onPointerDown</td>
+<td>按下时触发</td>
+</tr>
+<tr>
+<td>onPointerMove</td>
+<td>移动时触发</td>
+</tr>
+<tr>
+<td>onPointerEnter</td>
+<td>进入Widget区域时触发</td>
+</tr>
+<tr>
+<td>onPointerExit</td>
+<td>离开Widget区域时触发</td>
+</tr>
+<tr>
+<td>onPointerUp</td>
+<td>离开屏幕时触发</td>
+</tr>
+<tr>
+<td>onPointerCancel</td>
+<td>取消触摸时触发</td>
+</tr>
+<tr>
+<td>behavior</td>
+<td>控制事件传递</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
 
@@ -414,14 +781,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

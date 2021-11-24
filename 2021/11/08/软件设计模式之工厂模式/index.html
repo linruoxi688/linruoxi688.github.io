@@ -20,23 +20,24 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1.在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。2.将生成的md文件放到source下的_posts文件夹中 3.在你存放博客的blog文件夹目录下右击调出git，执行hexo g（generate）进行静态部署，然后输入hexo s（server）启动本地服务器，用于预览文章。最后执行hexo d（deploy）生成网页的静态文">
+  <meta name="description" content="什么是工厂模式？就是将本该创建的产品委托给一个个的工厂（factory）去创建。在工厂里对对象进行修改，解除耦合。 1.简单工厂模式由工厂类，产品接口和具体产品三部分组成。在工厂类中，定义createCoffee的方法，返回一个Coffee类型的对象。在方法中通过传入参数type的if判断来创建不同的咖啡子类，如美式，拿铁…在store类中，只需要创建相应的简单工厂类的对象：SimpleCoffe">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo发布文章">
-<meta property="og:url" content="http://example.com/2021/09/08/%E5%9C%A8%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%8A%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/index.html">
+<meta property="og:title" content="软件设计模式之工厂模式">
+<meta property="og:url" content="http://example.com/2021/11/08/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="知足的小窝">
-<meta property="og:description" content="1.在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。2.将生成的md文件放到source下的_posts文件夹中 3.在你存放博客的blog文件夹目录下右击调出git，执行hexo g（generate）进行静态部署，然后输入hexo s（server）启动本地服务器，用于预览文章。最后执行hexo d（deploy）生成网页的静态文">
+<meta property="og:description" content="什么是工厂模式？就是将本该创建的产品委托给一个个的工厂（factory）去创建。在工厂里对对象进行修改，解除耦合。 1.简单工厂模式由工厂类，产品接口和具体产品三部分组成。在工厂类中，定义createCoffee的方法，返回一个Coffee类型的对象。在方法中通过传入参数type的if判断来创建不同的咖啡子类，如美式，拿铁…在store类中，只需要创建相应的简单工厂类的对象：SimpleCoffe">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/bfef01eda8a745b4afd51eed52891dde.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/d55705829d0340c19028fbeb010cfb55.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="article:published_time" content="2021-09-08T11:36:35.000Z">
-<meta property="article:modified_time" content="2021-09-08T11:36:30.077Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/b5fbf66639da43afa1c4c26376464c7f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/fd5ffb416c4649a38b695548d2a5580f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/837a805ecd174bcebbe1613ad31f3757.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="article:published_time" content="2021-11-08T08:17:43.000Z">
+<meta property="article:modified_time" content="2021-11-24T15:40:55.227Z">
 <meta property="article:author" content="知足">
-<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/bfef01eda8a745b4afd51eed52891dde.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/b5fbf66639da43afa1c4c26376464c7f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16">
 
-<link rel="canonical" href="http://example.com/2021/09/08/%E5%9C%A8%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%8A%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/">
+<link rel="canonical" href="http://example.com/2021/11/08/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">
 
 
 <script id="page-configurations">
@@ -49,7 +50,7 @@
   };
 </script>
 
-  <title>hexo发布文章 | 知足的小窝</title>
+  <title>软件设计模式之工厂模式 | 知足的小窝</title>
   
 
 
@@ -169,7 +170,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/08/%E5%9C%A8%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%8A%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/08/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/%E5%B8%86%E6%B3%A2.jfif">
@@ -182,7 +183,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          hexo发布文章
+          软件设计模式之工厂模式
         </h1>
 
         <div class="post-meta">
@@ -191,10 +192,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-09-08 19:36:35 / 修改时间：19:36:30" itemprop="dateCreated datePublished" datetime="2021-09-08T19:36:35+08:00">2021-09-08</time>
+              <time title="创建时间：2021-11-08 16:17:43" itemprop="dateCreated datePublished" datetime="2021-11-08T16:17:43+08:00">2021-11-08</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-24 23:40:55" itemprop="dateModified" datetime="2021-11-24T23:40:55+08:00">2021-11-24</time>
+              </span>
 
           
 
@@ -207,8 +214,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h5 id="1-在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。"><a href="#1-在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。" class="headerlink" title="1.在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。"></a>1.在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。<img src="https://img-blog.csdnimg.cn/bfef01eda8a745b4afd51eed52891dde.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="就像这样"></h5><h5 id="2-将生成的md文件放到source下的-posts文件夹中"><a href="#2-将生成的md文件放到source下的-posts文件夹中" class="headerlink" title="2.将生成的md文件放到source下的_posts文件夹中"></a>2.将生成的md文件放到source下的_posts文件夹中</h5><p><img src="https://img-blog.csdnimg.cn/d55705829d0340c19028fbeb010cfb55.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
-<h5 id="3-在你存放博客的blog文件夹目录下右击调出git，执行hexo-g（generate）进行静态部署，然后输入hexo-s（server）启动本地服务器，用于预览文章。最后执行hexo-d（deploy）生成网页的静态文件，并部署到指定仓库。这样，一个博客就成功发布到你的网站上啦！"><a href="#3-在你存放博客的blog文件夹目录下右击调出git，执行hexo-g（generate）进行静态部署，然后输入hexo-s（server）启动本地服务器，用于预览文章。最后执行hexo-d（deploy）生成网页的静态文件，并部署到指定仓库。这样，一个博客就成功发布到你的网站上啦！" class="headerlink" title="3.在你存放博客的blog文件夹目录下右击调出git，执行hexo g（generate）进行静态部署，然后输入hexo s（server）启动本地服务器，用于预览文章。最后执行hexo d（deploy）生成网页的静态文件，并部署到指定仓库。这样，一个博客就成功发布到你的网站上啦！"></a>3.在你存放博客的blog文件夹目录下右击调出git，执行hexo g（generate）进行静态部署，然后输入hexo s（server）启动本地服务器，用于预览文章。最后执行hexo d（deploy）生成网页的静态文件，并部署到指定仓库。这样，一个博客就成功发布到你的网站上啦！</h5>
+        <p>什么是工厂模式？就是将本该创建的产品委托给一个个的工厂（factory）去创建。在工厂里对对象进行修改，解除耦合。</p>
+<h5 id="1-简单工厂模式"><a href="#1-简单工厂模式" class="headerlink" title="1.简单工厂模式"></a>1.简单工厂模式</h5><p>由工厂类，产品接口和具体产品三部分组成。<br><img src="https://img-blog.csdnimg.cn/b5fbf66639da43afa1c4c26376464c7f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="简单工厂例子-咖啡生产"><br>在工厂类中，定义createCoffee的方法，返回一个Coffee类型的对象。在方法中通过传入参数type的if判断来创建不同的咖啡子类，如美式，拿铁…<br>在store类中，只需要创建相应的简单工厂类的对象：<br><code>SimpleCoffeeFactory factory = new SimpleCoffeFactory(); Coffee coffee = factory.createCoffee(type);</code><br>返回的coffee即为需要制作的各种咖啡。</p>
+<p>简单工厂模式违反了开闭原则。当需要增加新的咖啡种类时，需要修改简单工厂类中的代码（if…)</p>
+<h5 id="2-工厂方法模式"><a href="#2-工厂方法模式" class="headerlink" title="2.工厂方法模式"></a>2.工厂方法模式</h5><p>为了解决简单工厂模式带来的问题——违反了开闭原则<br>定义一个用于创建对象的接口，让其子类决定实例化哪个产品对象。它包括 抽象工厂 具体工厂 抽象产品以及具体产品。<br><img src="https://img-blog.csdnimg.cn/fd5ffb416c4649a38b695548d2a5580f.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>在调用时：<br><code>CoffeeFactory factory = new AmericanCoffeeFactory(); Coffee coffee = factory.createCoffee();</code><br>用户只需要知道具体的工厂名称即可。无需知道产品如何生产（隐藏在具体工厂中）。<br>满足开闭原则。<br>但是每增加一个产品就需要增加一个具体产品类和一个对应的具体工厂类，增加了复杂度。</p>
+<h5 id="3-抽象工厂模式"><a href="#3-抽象工厂模式" class="headerlink" title="3.抽象工厂模式"></a>3.抽象工厂模式</h5><p>当需要生产多层次多级别的产品？需要一个 综合性 的工厂。<br><img src="https://img-blog.csdnimg.cn/837a805ecd174bcebbe1613ad31f3757.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>美式：美式咖啡和抹茶慕斯<br>意大利：提拉米苏和拿铁咖啡<br>如何调用？<br><code>ItalyDessertFactory factory = new ItalyDessertFactory(); Coffee coffee = factory.createCoffee(); Dessert dessert = factory.createDessert();</code><br>由意大利工厂生产出来的咖啡和甜品是拿铁和提拉米苏。</p>
+<p>能让客户始终使用同一产品族的对象。<br>但是当产品族中添加产品（如添加：小食）时，所有的工厂都要改变。符合开闭原则？视情况讨论咯。</p>
+
     </div>
 
     
@@ -217,7 +229,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/hexo/" rel="tag"># hexo</a>
+              <a href="/tags/java/" rel="tag"># java</a>
           </div>
 
         
@@ -226,12 +238,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/09/08/SpringBoot/" rel="prev" title="SpringBoot的基本结构">
-      <i class="fa fa-chevron-left"></i> SpringBoot的基本结构
+    <a href="/2021/09/08/%E5%9C%A8%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%8A%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/" rel="prev" title="hexo发布文章">
+      <i class="fa fa-chevron-left"></i> hexo发布文章
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/11/08/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" rel="next" title="软件设计模式之工厂模式">
-      软件设计模式之工厂模式 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/11/24/js%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80/" rel="next" title="js的一些基础">
+      js的一些基础 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -291,7 +303,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%9C%A8csdn%E5%8D%9A%E5%AE%A2%E4%B8%8A%E6%88%96%E8%80%85%E6%98%AF%E5%85%B6%E4%BB%96%E5%B9%B3%E5%8F%B0%E4%B8%8A%E7%94%A8md%E6%A0%BC%E5%BC%8F%E7%BC%96%E5%86%99%E4%BD%A0%E7%9A%84%E6%96%87%E7%AB%A0%E3%80%82%E5%BD%93%E7%84%B6%EF%BC%8C%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8markdown%E5%B7%A5%E5%85%B7%E5%9C%A8%E6%9C%AC%E5%9C%B0%E7%BC%96%E5%86%99%E4%B9%9F%E6%98%AF%E5%8F%AF%E4%BB%A5%E7%9A%84%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">1.在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%B0%86%E7%94%9F%E6%88%90%E7%9A%84md%E6%96%87%E4%BB%B6%E6%94%BE%E5%88%B0source%E4%B8%8B%E7%9A%84-posts%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD"><span class="nav-number">2.</span> <span class="nav-text">2.将生成的md文件放到source下的_posts文件夹中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E5%9C%A8%E4%BD%A0%E5%AD%98%E6%94%BE%E5%8D%9A%E5%AE%A2%E7%9A%84blog%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9B%AE%E5%BD%95%E4%B8%8B%E5%8F%B3%E5%87%BB%E8%B0%83%E5%87%BAgit%EF%BC%8C%E6%89%A7%E8%A1%8Chexo-g%EF%BC%88generate%EF%BC%89%E8%BF%9B%E8%A1%8C%E9%9D%99%E6%80%81%E9%83%A8%E7%BD%B2%EF%BC%8C%E7%84%B6%E5%90%8E%E8%BE%93%E5%85%A5hexo-s%EF%BC%88server%EF%BC%89%E5%90%AF%E5%8A%A8%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E7%94%A8%E4%BA%8E%E9%A2%84%E8%A7%88%E6%96%87%E7%AB%A0%E3%80%82%E6%9C%80%E5%90%8E%E6%89%A7%E8%A1%8Chexo-d%EF%BC%88deploy%EF%BC%89%E7%94%9F%E6%88%90%E7%BD%91%E9%A1%B5%E7%9A%84%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0%E6%8C%87%E5%AE%9A%E4%BB%93%E5%BA%93%E3%80%82%E8%BF%99%E6%A0%B7%EF%BC%8C%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2%E5%B0%B1%E6%88%90%E5%8A%9F%E5%8F%91%E5%B8%83%E5%88%B0%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E4%B8%8A%E5%95%A6%EF%BC%81"><span class="nav-number">3.</span> <span class="nav-text">3.在你存放博客的blog文件夹目录下右击调出git，执行hexo g（generate）进行静态部署，然后输入hexo s（server）启动本地服务器，用于预览文章。最后执行hexo d（deploy）生成网页的静态文件，并部署到指定仓库。这样，一个博客就成功发布到你的网站上啦！</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">1.简单工厂模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">2.工厂方法模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">3.抽象工厂模式</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

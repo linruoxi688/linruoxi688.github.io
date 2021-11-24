@@ -20,23 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1.在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。2.将生成的md文件放到source下的_posts文件夹中 3.在你存放博客的blog文件夹目录下右击调出git，执行hexo g（generate）进行静态部署，然后输入hexo s（server）启动本地服务器，用于预览文章。最后执行hexo d（deploy）生成网页的静态文">
+  <meta name="description" content="1.new GestureDetector()利用GestureDetector中的ontap()事件进行文本点击响应。 12345678910child: GestureDetector(          child: Text(            this.title,            style: TextStyle(color: Colors.white, fontSize:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo发布文章">
-<meta property="og:url" content="http://example.com/2021/09/08/%E5%9C%A8%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%8A%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/index.html">
+<meta property="og:title" content="给flutter设置文本响应的几种方式">
+<meta property="og:url" content="http://example.com/2021/01/03/flutte%E7%BB%99text%E6%96%87%E6%9C%AC%E8%AE%BE%E7%BD%AE%E5%93%8D%E5%BA%94%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/index.html">
 <meta property="og:site_name" content="知足的小窝">
-<meta property="og:description" content="1.在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。2.将生成的md文件放到source下的_posts文件夹中 3.在你存放博客的blog文件夹目录下右击调出git，执行hexo g（generate）进行静态部署，然后输入hexo s（server）启动本地服务器，用于预览文章。最后执行hexo d（deploy）生成网页的静态文">
+<meta property="og:description" content="1.new GestureDetector()利用GestureDetector中的ontap()事件进行文本点击响应。 12345678910child: GestureDetector(          child: Text(            this.title,            style: TextStyle(color: Colors.white, fontSize:">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/bfef01eda8a745b4afd51eed52891dde.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/d55705829d0340c19028fbeb010cfb55.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="article:published_time" content="2021-09-08T11:36:35.000Z">
-<meta property="article:modified_time" content="2021-09-08T11:36:30.077Z">
+<meta property="article:published_time" content="2021-01-03T15:04:35.000Z">
+<meta property="article:modified_time" content="2021-11-24T15:39:04.462Z">
 <meta property="article:author" content="知足">
-<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="flutter">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/bfef01eda8a745b4afd51eed52891dde.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
 
-<link rel="canonical" href="http://example.com/2021/09/08/%E5%9C%A8%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%8A%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/">
+<link rel="canonical" href="http://example.com/2021/01/03/flutte%E7%BB%99text%E6%96%87%E6%9C%AC%E8%AE%BE%E7%BD%AE%E5%93%8D%E5%BA%94%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/">
 
 
 <script id="page-configurations">
@@ -49,7 +46,7 @@
   };
 </script>
 
-  <title>hexo发布文章 | 知足的小窝</title>
+  <title>给flutter设置文本响应的几种方式 | 知足的小窝</title>
   
 
 
@@ -169,7 +166,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/08/%E5%9C%A8%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%8A%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/03/flutte%E7%BB%99text%E6%96%87%E6%9C%AC%E8%AE%BE%E7%BD%AE%E5%93%8D%E5%BA%94%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/%E5%B8%86%E6%B3%A2.jfif">
@@ -182,7 +179,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          hexo发布文章
+          给flutter设置文本响应的几种方式
         </h1>
 
         <div class="post-meta">
@@ -191,10 +188,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-09-08 19:36:35 / 修改时间：19:36:30" itemprop="dateCreated datePublished" datetime="2021-09-08T19:36:35+08:00">2021-09-08</time>
+              <time title="创建时间：2021-01-03 23:04:35" itemprop="dateCreated datePublished" datetime="2021-01-03T23:04:35+08:00">2021-01-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-24 23:39:04" itemprop="dateModified" datetime="2021-11-24T23:39:04+08:00">2021-11-24</time>
+              </span>
 
           
 
@@ -207,8 +210,46 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h5 id="1-在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。"><a href="#1-在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。" class="headerlink" title="1.在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。"></a>1.在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。<img src="https://img-blog.csdnimg.cn/bfef01eda8a745b4afd51eed52891dde.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="就像这样"></h5><h5 id="2-将生成的md文件放到source下的-posts文件夹中"><a href="#2-将生成的md文件放到source下的-posts文件夹中" class="headerlink" title="2.将生成的md文件放到source下的_posts文件夹中"></a>2.将生成的md文件放到source下的_posts文件夹中</h5><p><img src="https://img-blog.csdnimg.cn/d55705829d0340c19028fbeb010cfb55.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
-<h5 id="3-在你存放博客的blog文件夹目录下右击调出git，执行hexo-g（generate）进行静态部署，然后输入hexo-s（server）启动本地服务器，用于预览文章。最后执行hexo-d（deploy）生成网页的静态文件，并部署到指定仓库。这样，一个博客就成功发布到你的网站上啦！"><a href="#3-在你存放博客的blog文件夹目录下右击调出git，执行hexo-g（generate）进行静态部署，然后输入hexo-s（server）启动本地服务器，用于预览文章。最后执行hexo-d（deploy）生成网页的静态文件，并部署到指定仓库。这样，一个博客就成功发布到你的网站上啦！" class="headerlink" title="3.在你存放博客的blog文件夹目录下右击调出git，执行hexo g（generate）进行静态部署，然后输入hexo s（server）启动本地服务器，用于预览文章。最后执行hexo d（deploy）生成网页的静态文件，并部署到指定仓库。这样，一个博客就成功发布到你的网站上啦！"></a>3.在你存放博客的blog文件夹目录下右击调出git，执行hexo g（generate）进行静态部署，然后输入hexo s（server）启动本地服务器，用于预览文章。最后执行hexo d（deploy）生成网页的静态文件，并部署到指定仓库。这样，一个博客就成功发布到你的网站上啦！</h5>
+        <h5 id="1-new-GestureDetector"><a href="#1-new-GestureDetector" class="headerlink" title="1.new GestureDetector()"></a>1.new GestureDetector()</h5><p>利用GestureDetector中的ontap()事件进行文本点击响应。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">child: GestureDetector(</span><br><span class="line">          child: Text(</span><br><span class="line">            <span class="keyword">this</span>.title,</span><br><span class="line">            style: TextStyle(color: Colors.white, fontSize: <span class="number">18.0</span>),</span><br><span class="line">          ),</span><br><span class="line">          onTap: <span class="keyword">this</span>.rightClick,</span><br><span class="line">        ),</span><br><span class="line">rightClick: () &#123;</span><br><span class="line">    print(<span class="string">&quot;点我干什么&quot;</span>);</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<h5 id="2-TextSpan-部件"><a href="#2-TextSpan-部件" class="headerlink" title="2.TextSpan()部件"></a>2.TextSpan()部件</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">child: Text.rich(</span><br><span class="line">              TextSpan(</span><br><span class="line">                children: [</span><br><span class="line">                  TextSpan(</span><br><span class="line">                    text: <span class="string">&quot;hello&quot;</span>,</span><br><span class="line">                    style: TextStyle(fontSize: <span class="number">29</span>, color: Colors.red),</span><br><span class="line">                  ),</span><br><span class="line">                  TextSpan(</span><br><span class="line">                    text: <span class="string">&quot;world&quot;</span>,</span><br><span class="line">                    style: TextStyle(fontSize: <span class="number">59</span>, color: Colors.yellow),</span><br><span class="line">                    <span class="comment">// 设置点击事件</span></span><br><span class="line">                    recognizer: TapGestureRecognizer()</span><br><span class="line">                      ..onTap = () &#123;</span><br><span class="line">                        debugPrint(<span class="string">&quot;$&#123;i++&#125;&quot;</span>);</span><br><span class="line">                      &#125;,</span><br><span class="line">                  ),</span><br><span class="line">                ],</span><br><span class="line">              ),</span><br></pre></td></tr></table></figure>
+<h5 id="3-Listener监听触摸事件"><a href="#3-Listener监听触摸事件" class="headerlink" title="3.Listener监听触摸事件"></a>3.Listener监听触摸事件</h5><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>onPointerDown</td>
+<td>按下时触发</td>
+</tr>
+<tr>
+<td>onPointerMove</td>
+<td>移动时触发</td>
+</tr>
+<tr>
+<td>onPointerEnter</td>
+<td>进入Widget区域时触发</td>
+</tr>
+<tr>
+<td>onPointerExit</td>
+<td>离开Widget区域时触发</td>
+</tr>
+<tr>
+<td>onPointerUp</td>
+<td>离开屏幕时触发</td>
+</tr>
+<tr>
+<td>onPointerCancel</td>
+<td>取消触摸时触发</td>
+</tr>
+<tr>
+<td>behavior</td>
+<td>控制事件传递</td>
+</tr>
+</tbody></table>
+
     </div>
 
     
@@ -217,7 +258,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/hexo/" rel="tag"># hexo</a>
+              <a href="/tags/flutter/" rel="tag"># flutter</a>
           </div>
 
         
@@ -225,13 +266,10 @@
 
         
     <div class="post-nav">
+      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2021/09/08/SpringBoot/" rel="prev" title="SpringBoot的基本结构">
-      <i class="fa fa-chevron-left"></i> SpringBoot的基本结构
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/11/08/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" rel="next" title="软件设计模式之工厂模式">
-      软件设计模式之工厂模式 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/01/08/flutter%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%90%AD%E5%BB%BA/" rel="next" title="flutter项目的搭建">
+      flutter项目的搭建 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -291,7 +329,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%9C%A8csdn%E5%8D%9A%E5%AE%A2%E4%B8%8A%E6%88%96%E8%80%85%E6%98%AF%E5%85%B6%E4%BB%96%E5%B9%B3%E5%8F%B0%E4%B8%8A%E7%94%A8md%E6%A0%BC%E5%BC%8F%E7%BC%96%E5%86%99%E4%BD%A0%E7%9A%84%E6%96%87%E7%AB%A0%E3%80%82%E5%BD%93%E7%84%B6%EF%BC%8C%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8markdown%E5%B7%A5%E5%85%B7%E5%9C%A8%E6%9C%AC%E5%9C%B0%E7%BC%96%E5%86%99%E4%B9%9F%E6%98%AF%E5%8F%AF%E4%BB%A5%E7%9A%84%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">1.在csdn博客上或者是其他平台上用md格式编写你的文章。当然，直接使用markdown工具在本地编写也是可以的。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%B0%86%E7%94%9F%E6%88%90%E7%9A%84md%E6%96%87%E4%BB%B6%E6%94%BE%E5%88%B0source%E4%B8%8B%E7%9A%84-posts%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD"><span class="nav-number">2.</span> <span class="nav-text">2.将生成的md文件放到source下的_posts文件夹中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E5%9C%A8%E4%BD%A0%E5%AD%98%E6%94%BE%E5%8D%9A%E5%AE%A2%E7%9A%84blog%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9B%AE%E5%BD%95%E4%B8%8B%E5%8F%B3%E5%87%BB%E8%B0%83%E5%87%BAgit%EF%BC%8C%E6%89%A7%E8%A1%8Chexo-g%EF%BC%88generate%EF%BC%89%E8%BF%9B%E8%A1%8C%E9%9D%99%E6%80%81%E9%83%A8%E7%BD%B2%EF%BC%8C%E7%84%B6%E5%90%8E%E8%BE%93%E5%85%A5hexo-s%EF%BC%88server%EF%BC%89%E5%90%AF%E5%8A%A8%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E7%94%A8%E4%BA%8E%E9%A2%84%E8%A7%88%E6%96%87%E7%AB%A0%E3%80%82%E6%9C%80%E5%90%8E%E6%89%A7%E8%A1%8Chexo-d%EF%BC%88deploy%EF%BC%89%E7%94%9F%E6%88%90%E7%BD%91%E9%A1%B5%E7%9A%84%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0%E6%8C%87%E5%AE%9A%E4%BB%93%E5%BA%93%E3%80%82%E8%BF%99%E6%A0%B7%EF%BC%8C%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2%E5%B0%B1%E6%88%90%E5%8A%9F%E5%8F%91%E5%B8%83%E5%88%B0%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E4%B8%8A%E5%95%A6%EF%BC%81"><span class="nav-number">3.</span> <span class="nav-text">3.在你存放博客的blog文件夹目录下右击调出git，执行hexo g（generate）进行静态部署，然后输入hexo s（server）启动本地服务器，用于预览文章。最后执行hexo d（deploy）生成网页的静态文件，并部署到指定仓库。这样，一个博客就成功发布到你的网站上啦！</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-new-GestureDetector"><span class="nav-number">1.</span> <span class="nav-text">1.new GestureDetector()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-TextSpan-%E9%83%A8%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">2.TextSpan()部件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-Listener%E7%9B%91%E5%90%AC%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">3.Listener监听触摸事件</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

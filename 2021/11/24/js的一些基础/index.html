@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1.数据类型 &#x3D;&#x3D; 和 &#x3D;&#x3D;&#x3D;的区别：两个&#x3D;判断相等，类型不等值相等也会判断为true。如 “1”和1三个&#x3D;则是绝对相等  判断是否为数字（NAN），不能使用NAN&#x3D;&#x3D;&#x3D;NAN，需要使用isNAN()判断。var a &#x3D; 5 ; isNAN(a)  数组定义：var array&#x3D;[1,2,3,&#39;hello&#39;,null]或是 new Array(1,2,3,&#39;hello&amp;#3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js的一些基础">
+<meta property="og:url" content="http://example.com/2021/11/24/js%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="知足的小窝">
+<meta property="og:description" content="1.数据类型 &#x3D;&#x3D; 和 &#x3D;&#x3D;&#x3D;的区别：两个&#x3D;判断相等，类型不等值相等也会判断为true。如 “1”和1三个&#x3D;则是绝对相等  判断是否为数字（NAN），不能使用NAN&#x3D;&#x3D;&#x3D;NAN，需要使用isNAN()判断。var a &#x3D; 5 ; isNAN(a)  数组定义：var array&#x3D;[1,2,3,&#39;hello&#39;,null]或是 new Array(1,2,3,&#39;hello&amp;#3">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-24T15:36:15.000Z">
+<meta property="article:modified_time" content="2021-11-24T15:41:50.921Z">
+<meta property="article:author" content="知足">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/11/24/js%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>js的一些基础 | 知足的小窝</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">知足的小窝</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/24/js%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%B8%86%E6%B3%A2.jfif">
+      <meta itemprop="name" content="知足">
+      <meta itemprop="description" content="珍惜当下，把握未来">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知足的小窝">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          js的一些基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-11-24 23:36:15 / 修改时间：23:41:50" itemprop="dateCreated datePublished" datetime="2021-11-24T23:36:15+08:00">2021-11-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h3><ol>
+<li><p>== 和 ===的区别：<br>两个=判断相等，类型不等值相等也会判断为true。如 “1”和1<br>三个=则是绝对相等</p>
+</li>
+<li><p>判断是否为数字（NAN），不能使用NAN===NAN，需要使用isNAN()判断。<br><code>var a = 5 ; isNAN(a)</code></p>
+</li>
+<li><p>数组<br>定义：<code>var array=[1,2,3,&#39;hello&#39;,null]</code><br>或是 <code>new Array(1,2,3,&#39;hello&#39;,null)</code><br>取数组时，如果下标越界只会显示undefined。</p>
+<p>数组的长度是可以通过赋值改变的，如果赋的过小会导致元素丢失。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.length=<span class="number">2</span>; <span class="comment">//导致下标大于1的元素丢失</span></span><br></pre></td></tr></table></figure>
+<p>截取数组部分元素的方法.slice()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.slice(<span class="number">1</span>,<span class="number">4</span>) <span class="comment">//截取第二个到第四个，留头去尾</span></span><br></pre></td></tr></table></figure>
+<p>数组中元素的操作</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">array.push(<span class="string">&#x27;x&#x27;</span>) <span class="comment">//向数组尾部压入元素x</span></span><br><span class="line">array.pop() <span class="comment">//数组尾部弹出一个元素</span></span><br><span class="line">array.unshift(<span class="string">&#x27;x&#x27;</span>) <span class="comment">//在头部压入元素x</span></span><br><span class="line">array.shift() <span class="comment">//在头部弹出</span></span><br><span class="line">array.sort() <span class="comment">//排序数组</span></span><br><span class="line">array.reverse() <span class="comment">//反序数组</span></span><br><span class="line">array.concat([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]) <span class="comment">//拼接数组,不修改原数组，返回新的数组</span></span><br><span class="line">array.join(<span class="string">&#x27;-&#x27;</span>) <span class="comment">//以指定字符连接数组中的元素</span></span><br></pre></td></tr></table></figure></li>
+<li><p>对象<br>若干个键值对。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">	<span class="attr">name</span>:<span class="string">&quot;mike&quot;</span>,</span><br><span class="line">	<span class="attr">age</span>:<span class="number">18</span>,</span><br><span class="line">	<span class="attr">tags</span>:[<span class="string">&#x27;js&#x27;</span>,<span class="string">&#x27;html&#x27;</span>,<span class="string">&#x27;flutter&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line"> person.name <span class="comment">//取对象</span></span><br><span class="line"> <span class="keyword">delete</span> person.age <span class="comment">//删除对象中的属性</span></span><br><span class="line"> <span class="string">&#x27;age&#x27;</span> <span class="keyword">in</span> person <span class="comment">//判断属性是否在对象中</span></span><br><span class="line"> person.hasOwnProperty(<span class="string">&#x27;toString) //判断是否是自己定义的属性</span></span><br></pre></td></tr></table></figure></li>
+<li><p>var 和 let<br>let用于声明局部变量，所声明变量只在let命令所在代码块内有效。<br>var声明的变量是全局的。<br>使用<code>use strict</code>在js中设置严格检查模式。</p>
+</li>
+<li><p>1 变量提升</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> v=<span class="string">&#x27;Hello World&#x27;</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   alert(v);</span><br><span class="line">   <span class="keyword">var</span> v=<span class="string">&#x27;I love you&#x27;</span>;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<p>  为什么输出会是undefined？这就要提到js中的变量提升机制了。在定义<code>var v = &#39;I love you&#39;</code>时，实际上js把变量v提到了函数的top地方。也就是说，在function的第一行其实是存在一个隐形的定义 <code>var v;</code>的。<br>  let定义的变量不存在变量提升机制，且不允许重复声明。</p>
+</li>
+<li><p>字符串<br>定义 <code>var a = &#39;123&#39; 或是 var a =&quot;123&quot;</code><br>转义字符<code>\n \tab \&#39;</code>等，反斜杠后跟转义字符。<br>多行字符串使用``包裹。<br>模板字符串<code>let msg = &#39;hello,$&#123;name&#125;&#39;</code> name是另外的变量。<br>一些字符串操作函数:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">str.length <span class="comment">//获取字符串的长度</span></span><br><span class="line">str.toUpperCase() <span class="comment">//转换成大写 </span></span><br><span class="line">str.toLowerCase() <span class="comment">//转换成小写</span></span><br><span class="line">str.indexOf(<span class="string">&#x27;e&#x27;</span>) <span class="comment">//获取某个元素在数组的下标</span></span><br><span class="line">str.subString(<span class="number">1</span>,<span class="number">3</span>) <span class="comment">//截取第二到第四个字符串</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Set和Map<br> Set和Map是ES6中新增的数据结构。Set为无序不重复的数组，Map本质上是一组键值对的集合。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>([<span class="string">&#x27;name&#x27;</span>,<span class="string">&#x27;huijunyu&#x27;</span>],[<span class="string">&#x27;age&#x27;</span>,<span class="number">19</span>])</span><br><span class="line"><span class="keyword">var</span> name = map.get(<span class="string">&#x27;name&#x27;</span>) <span class="comment">//根据key拿value</span></span><br><span class="line">map.set(<span class="string">&#x27;age&#x27;</span>,<span class="number">20</span>) <span class="comment">//设置value</span></span><br><span class="line">map.delete(<span class="string">&#x27;name&#x27;</span>) <span class="comment">//删除指定key</span></span><br><span class="line">map.keys() map.values() map.entries</span><br><span class="line">map.has(<span class="string">&quot;key&quot;</span>) <span class="comment">//判断Map中是否有某个key对应value</span></span><br><span class="line">map.clear() <span class="comment">//清空map对象的内容</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Loop循环</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> array&#123;</span><br><span class="line"><span class="built_in">console</span>.log(array[i]) <span class="comment">//i为索引值</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">of</span> array&#123;</span><br><span class="line"><span class="built_in">console</span>.log(i) <span class="comment">//i为属性值</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> numbers = [<span class="number">45</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>];</span><br><span class="line"><span class="keyword">let</span> txt = <span class="string">&quot;&quot;</span>;</span><br><span class="line">numbers.forEach(myFunction);  <span class="comment">//forEach方法为每个数组元素调用一次函数	</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  txt += value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-函数"><a href="#2-函数" class="headerlink" title="2.函数"></a>2.函数</h3></li>
+<li><p>定义函数<br><code>function f1(x)&#123;&#125;</code><br><code>var f1 = function(x)&#123;&#125;</code></p>
+</li>
+<li><p>arguments rest 关键字<br>arguments包含了所有的参数，是一个数组。js的函数在接收参数时可以接收任意个，使用arguments可以进行全部参数的访问。<br>rest可以获取除了定义要接收的参数以外的其他参数。形式如下<br><code>function f1(a,b,...rest)&#123;&#125;</code><br>rest同样是一个数组。</p>
+</li>
+<li><p>apply函数<br>js中，apply函数可以改变this指针的指向。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="built_in">this</span>.name&#125; <span class="comment">//有点怪异，让它返回名字。本来的this是windows，找不到name。</span></span><br><span class="line"><span class="keyword">var</span> classA = &#123;</span><br><span class="line"><span class="attr">name</span>:<span class="string">&#x27;hjy&#x27;</span>,</span><br><span class="line"><span class="attr">age</span>:f1&#125;;</span><br><span class="line">f1.apply(classA,[]); <span class="comment">//this指针指向了classA</span></span><br></pre></td></tr></table></figure></li>
+<li><p>json对象<br>JSON(JavaScript Object Notation, JS 对象简谱) 是一种轻量级的数据交换格式。它是一个格式化的字符串，可以和js对象相互转化。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> user = &#123;</span><br><span class="line">	<span class="attr">name</span>:<span class="string">&#x27;hjy&#x27;</span>,</span><br><span class="line">	<span class="attr">age</span>:<span class="number">18</span>,</span><br><span class="line">	<span class="attr">sex</span>:<span class="string">&#x27;男&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> jsonUser = <span class="built_in">JSON</span>.stringify(user); <span class="comment">//js对象转json字符串</span></span><br><span class="line"><span class="keyword">var</span> obj = <span class="built_in">JSON</span>.parse(<span class="string">&#x27;&#123;&quot;name&quot;:&quot;hjy&quot;,&quot;age&quot;:18,&quot;sex&quot;:&quot;男&quot;&#125;&#x27;</span>) <span class="comment">//json字符串转js对象</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>要注意json和js对象的区别!</p>
+</blockquote>
+<h3 id="3、BOM和DOM"><a href="#3、BOM和DOM" class="headerlink" title="3、BOM和DOM"></a>3、BOM和DOM</h3><blockquote>
+<p>BOM</p>
+</blockquote>
+</li>
+<li><p>window 代表浏览器窗口<br><code>window.alert</code><br><code>window.innerHeight</code>等属性和方法</p>
+</li>
+<li><p>Navigatot 封装了浏览器的信息<br><code>navigator.platform</code><br><code>navigator.appName</code> Navigator可能会被人为修改，不建议用之中的属性判断和编写code</p>
+</li>
+<li><p>screen 代表屏幕<br><code>screen.width  screen.height</code></p>
+</li>
+<li><p>location 代表当前页面的URL信息<br><code>location.host  location.reload()   </code><br><code>location.assign(&#39;url&#39;) //设置新的地址</code></p>
+</li>
+<li><p>history 获取浏览器的历史记录<br><code>history.forward()  history.back()</code></p>
+</li>
+</ol>
+<blockquote>
+<p>DOM</p>
+</blockquote>
+<p>浏览器实际上就是一个DOM树，我们需要对它其中的一个个div，各种元素进行操作。</p>
+<ol>
+<li><p>获取DOM节点<br> <code>document.getElementById(&#39;id&#39;) //最常用的</code><br> <code>document.getElementByClassName(&#39;class&#39;)</code><br> <code>document.getElementByTagName(&#39;tag&#39;)</code></p>
+</li>
+<li><p>操作DOM节点<br><code>var a = document.getElementById(&#39;id&#39;)   a.innerText=&#39;text&#39; a.innerHTML=&#39;&lt;strong&gt;text&lt;/strong&gt;&#39;</code><br>innerHTML可以识别HTML标签<br><code>a.style.color=&#39;yellow&#39;</code><br>还可以操作节点的css属性</p>
+</li>
+<li><p>删除DOM结点<br>不能直接删除，要获取父节点，通过父节点删除</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> self = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;p1&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> father = p1.parentElement;</span><br><span class="line">father.removeChild(self)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建DOM节点</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> newP = <span class="built_in">document</span>.createElement(<span class="string">&#x27;p&#x27;</span>) <span class="comment">//创建一个p标签 </span></span><br><span class="line">newP.setAttribute(<span class="string">&#x27;id&#x27;</span>,<span class="string">&#x27;newP&#x27;</span>)</span><br><span class="line">newP.setAttribute(<span class="string">&#x27;innerText&#x27;</span>,<span class="string">&#x27;Hello World&#x27;</span>)</span><br><span class="line">list.append(newP) <span class="comment">//插入DOM结点</span></span><br></pre></td></tr></table></figure>
+<p> 更多DOM操作详见<a target="_blank" rel="noopener" href="https://www.w3school.com.cn/jsref/dom_obj_document.asp">W3C js Document</a></p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/08/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" rel="prev" title="软件设计模式之工厂模式">
+      <i class="fa fa-chevron-left"></i> 软件设计模式之工厂模式
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">1.数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">2.函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81BOM%E5%92%8CDOM"><span class="nav-number">3.</span> <span class="nav-text">3、BOM和DOM</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="知足"
+      src="/images/%E5%B8%86%E6%B3%A2.jfif">
+  <p class="site-author-name" itemprop="name">知足</p>
+  <div class="site-description" itemprop="description">珍惜当下，把握未来</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021-07 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">知足</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

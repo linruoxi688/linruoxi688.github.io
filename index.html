@@ -162,6 +162,245 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/13/C++%E4%B9%8B%E9%87%8D%E8%BD%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%B8%86%E6%B3%A2.jfif">
+      <meta itemprop="name" content="知足">
+      <meta itemprop="description" content="珍惜当下，把握未来">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知足的小窝">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/13/C++%E4%B9%8B%E9%87%8D%E8%BD%BD/" class="post-title-link" itemprop="url">c++之重载</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-13 16:49:26" itemprop="dateCreated datePublished" datetime="2022-05-13T16:49:26+08:00">2022-05-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-05 10:30:02" itemprop="dateModified" datetime="2022-09-05T10:30:02+08:00">2022-09-05</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h4><p>对已有的运算符赋予多重含义，使得同一运算符作用于不同数据类型的数据时导致不同类型的行为。<br>形式：<br><code>返回值类型 operator 运算符(形参表)&#123;&#125;</code><br>注意，当重载为成员函数时，参数个数为运算符数目-1.<br>例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="keyword">double</span> real,imag;</span><br><span class="line">		<span class="built_in">Complex</span>(<span class="keyword">double</span> r = <span class="number">0.0</span>,<span class="keyword">double</span> i = <span class="number">0.0</span>):<span class="built_in">real</span>(r),<span class="built_in">imag</span>(i)&#123;&#125;</span><br><span class="line">		Complex <span class="keyword">operator</span>-(<span class="keyword">const</span> Complex &amp;c);<span class="comment">//声明重载为成员函数</span></span><br><span class="line">&#125;;</span><br><span class="line">Complex <span class="keyword">operator</span>+(<span class="keyword">const</span> Complex &amp;a,<span class="keyword">const</span> Complex &amp;b)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">Complex</span>(a.real+b.real,a.imag+b.imag);<span class="comment">//返回临时对象</span></span><br><span class="line">&#125;</span><br><span class="line">Complex Complex::<span class="keyword">operator</span>+(<span class="keyword">const</span> Complex &amp;c)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">Complex</span>(real-c.real,imag-c.imag);<span class="comment">//只需一个参数，a-b相当于a.operator-(b)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用时：<br><img src="https://img-blog.csdnimg.cn/ab5d674d302f4ab1a394dd370f4f5c52.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>赋值运算符重载<br>它只能重载为成员函数<br>简单用法如下：<img src="https://img-blog.csdnimg.cn/11303349b8f74679a786869bfaf646d8.png" alt="在这里插入图片描述"><br>问题：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String s1,s2;</span><br><span class="line">s1=<span class="string">&quot;this&quot;</span>;s2=<span class="string">&quot;that&quot;</span>;</span><br><span class="line">s1=s2;</span><br></pre></td></tr></table></figure>
+使用原生的赋值运算符，可以吗？答案是no。<br>看一下会出现的问题：<br><img src="https://img-blog.csdnimg.cn/0bc29dfc10eb48e79833f14d2d3ede58.png" alt="在这里插入图片描述"></li>
+</ul>
+<ol>
+<li>this的空间失去了指针指向它，没有被delete就废弃了，产生内存垃圾。</li>
+<li>如果s1消亡，析构函数会delete s1所指向的内存空间。s2也就无所指了。当s2消亡，再一次析构delete已经删除的空间，程序崩溃。<br>这里如果再令S2=”other”;S1指向仍是that。因为S2=”other”,是将S2指向other所在的内存地址，而不是修改S2已经指向的地址单元的值。<br>解决方法：<br><img src="https://img-blog.csdnimg.cn/61d6d528426b4ccaa11a144c7fc33b5b.png" alt="在这里插入图片描述"></li>
+</ol>
+<ul>
+<li><p>流插入和流提取运算符重载<br>cout是ostream类的对象，cin是istream类的对象。这两个类均定义在iostream中。<br>在类中分别对&lt;&lt;和&gt;&gt;进行了重载。<br>针对输出/输入的不同类型，c++重载了多个成员函数。<br>比如输出int:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> ostream::<span class="keyword">operator</span>&lt;&lt;(<span class="keyword">int</span> n)&#123;</span><br><span class="line">	......<span class="comment">//输出n的代码</span></span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我们想要输出特定的格式的数据时，比如复数，简单的调用cout&lt;&lt;输出对象肯定就不行了。自己根据需要重载&lt;&lt;流插入和&gt;&gt;流提取运算符。下面以输入输出复数类举例。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Complex c;<span class="comment">//Complex为复数类</span></span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	cin&gt;&gt;c&gt;&gt;n;</span><br><span class="line">	cout&lt;&lt;c&lt;&lt;<span class="string">&quot;,&quot;</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span>&#123;</span></span><br><span class="line">	<span class="keyword">double</span> real,imag;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Complex</span>(<span class="keyword">double</span> r = <span class="number">0</span>,<span class="keyword">double</span> i = <span class="number">0</span>):<span class="built_in">real</span>(r),<span class="built_in">imag</span>(i)&#123;&#125;;<span class="comment">//构造函数</span></span><br><span class="line">	<span class="keyword">friend</span> ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os,<span class="keyword">const</span> Complex&amp; c);<span class="comment">//全局函数，并声明为友元。返回值需要是ostream类的引用，即cout方便连续调用。</span></span><br><span class="line">	<span class="keyword">friend</span> istream&amp; opeator&gt;&gt;(istream&amp; is,Complex&amp; c);				</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os,<span class="keyword">const</span> Complex&amp; c)&#123;</span><br><span class="line">	os&lt;&lt;c.real&lt;&lt;<span class="string">&quot;+&quot;</span>&lt;&lt;c.imag&lt;&lt;<span class="string">&quot;i&quot;</span>;<span class="comment">//输出以a+bi的形式</span></span><br><span class="line">	<span class="keyword">return</span> os;</span><br><span class="line">&#125;</span><br><span class="line">流提取运算符的重载类似，做一些字符串分割处理即可。注意接收键盘输入，不能为<span class="keyword">const</span>。</span><br></pre></td></tr></table></figure></li>
+<li><p>类型转换运算符的重载不需要写返回值</p>
+</li>
+<li><p>自增和自减运算符的重载<br>  前置运算符作为一元运算符重载<br>  后置运算符作为二元运算符重载，多写一个没用的参数<br>  例子：要实现下面的输出，该如何重载？<img src="https://img-blog.csdnimg.cn/2e3a66625bee47a49c77b0f908e137b3.png" alt="在这里插入图片描述"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CDemo</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>: <span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">CDemo</span>(<span class="keyword">int</span> i = <span class="number">0</span>):<span class="built_in">n</span>(i)&#123;&#125;</span><br><span class="line">	CDemo&amp; <span class="keyword">operator</span>++();<span class="comment">//前置</span></span><br><span class="line">	CDemo <span class="keyword">operator</span>++(<span class="keyword">int</span>);</span><br><span class="line">	<span class="comment">//后置，多一个无用参数。c++中，后置运算符没有返回引用，只是返回临时对象。</span></span><br><span class="line">	<span class="comment">//因此i++ = 1这种写法是禁止的</span></span><br><span class="line">	<span class="comment">//而++i返回i的引用，可以++i = x;这样的i就是x</span></span><br><span class="line">	<span class="function"><span class="keyword">operator</span> <span class="title">int</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> n;&#125;<span class="comment">//重载类型转换运算符</span></span><br><span class="line">	<span class="keyword">friend</span> CDemo&amp; <span class="keyword">operator</span>--(CDemo&amp;);<span class="comment">//声明友元，--用全局重载</span></span><br><span class="line">	<span class="keyword">friend</span> CDemo&amp; <span class="keyword">operator</span>--(CDemo&amp;,<span class="keyword">int</span>);<span class="comment">//后置</span></span><br><span class="line">&#125;;</span><br><span class="line">CDemo&amp; CDemo::<span class="keyword">operator</span>++()<span class="comment">//前置++</span></span><br><span class="line">&#123;</span><br><span class="line">	++n;</span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span></span><br><span class="line">&#125;</span><br><span class="line">CDemo CDemo::<span class="keyword">operator</span>++(<span class="keyword">int</span>)&#123;<span class="comment">//后置++</span></span><br><span class="line">	CDemo <span class="built_in">temp</span>(*<span class="keyword">this</span>);</span><br><span class="line">	n++;</span><br><span class="line">	<span class="keyword">return</span> temp;<span class="comment">//返回修改前的对象，实际上n变化了。</span></span><br><span class="line">&#125;</span><br><span class="line">CDemo <span class="keyword">operator</span>--(CDemo&amp; d)&#123;<span class="comment">//前置--</span></span><br><span class="line">	d.n--;</span><br><span class="line">	<span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br><span class="line">CDemo <span class="keyword">operator</span>--(CDemo&amp; d,<span class="keyword">int</span>)&#123;<span class="comment">//后置--</span></span><br><span class="line">	<span class="function">CDemo <span class="title">temp</span><span class="params">(d)</span></span>;</span><br><span class="line">	d.n--;</span><br><span class="line">	<span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>最后再补充一点重载的注意事项<br><img src="https://img-blog.csdnimg.cn/eb305ae95fff4fe88bb629019ca4c925.png" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/08/C++%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%B8%86%E6%B3%A2.jfif">
+      <meta itemprop="name" content="知足">
+      <meta itemprop="description" content="珍惜当下，把握未来">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知足的小窝">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/08/C++%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86/" class="post-title-link" itemprop="url">c++类与对象的知识</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-08 22:41:01" itemprop="dateCreated datePublished" datetime="2022-05-08T22:41:01+08:00">2022-05-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-05 10:31:03" itemprop="dateModified" datetime="2022-09-05T10:31:03+08:00">2022-09-05</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="1-复制构造函数"><a href="#1-复制构造函数" class="headerlink" title="1.复制构造函数"></a>1.复制构造函数</h4><p>形如X::X(X&amp;)或X:X(const X&amp;)的构造函数。它只能有一个参数，即同类对象的引用。<br>如果没有自己定义，系统生成默认的复制构造函数，完成复制功能。</p>
+<p>它仅在下面三种情况下起作用：</p>
+<ol>
+<li>当用一个对象去初始化同类的另一个对象<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Complex <span class="title">c2</span><span class="params">(c1)</span></span>;</span><br><span class="line">Complex c2 = c1;</span><br></pre></td></tr></table></figure></li>
+<li>某个函数有参数是类A的对象，则该函数被调用时，类A的复制构造函数也被调用。 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Func</span><span class="params">(A a1)</span></span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	A a2;</span><br><span class="line">	<span class="built_in">Func</span>(a2);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>函数返回值是类A的对象，函数返回时，A的复制构造函数被调用。 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">A <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">A <span class="title">b</span><span class="params">(<span class="number">4</span>)</span></span>;</span><br><span class="line">	<span class="keyword">return</span> b; <span class="comment">//返回了A的对象</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;<span class="built_in">Func</span>();&#125;<span class="comment">//此时类A的复制构造函数也会被调用。</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="2-类型转换构造函数"><a href="#2-类型转换构造函数" class="headerlink" title="2.类型转换构造函数"></a>2.类型转换构造函数</h4><p>话不多说，直接上例子<br><img src="https://img-blog.csdnimg.cn/0e6f7150681a4db48aa2f364483e9b40.png" alt="在这里插入图片描述"><br>c1 = 9，其就相当于 c1 = Complex(9);</p>
+<h4 id="3-静态成员函数-变量"><a href="#3-静态成员函数-变量" class="headerlink" title="3.静态成员函数/变量"></a>3.静态成员函数/变量</h4><p>实际上就是全局函数和变量。设计这一概念主要为了增强某些变量与类的关联性。<br>静态成员函数并不具体作用与某个对象。静态成员变量占一份地址，为所有对象共享。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> x,y;</span><br><span class="line">		<span class="keyword">static</span> <span class="keyword">int</span> totalX;</span><br><span class="line">		<span class="keyword">static</span> <span class="keyword">int</span> totalY;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printTotal</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>记住一点，sizeof运算符不会计算静态的成员变量。</p>
+<h4 id="4-友元函数-类"><a href="#4-友元函数-类" class="headerlink" title="4. 友元函数/类"></a>4. 友元函数/类</h4><p>1.友元函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">aFunc</span><span class="params">(B* b)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>&#123;</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> p;</span><br><span class="line">		<span class="function"><span class="keyword">friend</span> <span class="keyword">int</span> <span class="title">bFunc</span><span class="params">(<span class="keyword">int</span> x)</span></span>;<span class="comment">//全局函数</span></span><br><span class="line">		<span class="function"><span class="keyword">friend</span> <span class="keyword">void</span> <span class="title">A::aFunc</span><span class="params">(B *b)</span></span>;<span class="comment">//在class B中声明友元，bFunc和aFunc都可以访问classB的私有成员</span></span><br><span class="line">		一个类的友元函数可以访问该类的私有成员</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.友元类</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> p;</span><br><span class="line">	<span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span>;</span><span class="comment">//声明B是它的友元类</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		A a;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">funcB</span><span class="params">()</span></span>&#123;</span><br><span class="line">			a.p+=<span class="number">100</span>;<span class="comment">//B是A的友元类，所以B中的成员函数可以访问A的私有成员</span></span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：</p>
+<ol>
+<li>声明友元，在被当做友元的类中声明，即我宣布谁是我的朋友。</li>
+<li>友元关系不能传递和继承。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/07/CTF%20Web%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%8E%A9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%B8%86%E6%B3%A2.jfif">
+      <meta itemprop="name" content="知足">
+      <meta itemprop="description" content="珍惜当下，把握未来">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知足的小窝">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/07/CTF%20Web%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%8E%A9%E6%B3%95/" class="post-title-link" itemprop="url">CTFweb浅打</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-07 22:52:10" itemprop="dateCreated datePublished" datetime="2022-05-07T22:52:10+08:00">2022-05-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-05 10:31:45" itemprop="dateModified" datetime="2022-09-05T10:31:45+08:00">2022-09-05</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h5 id="最近博主无聊的开始想打打ctf，开个博客记录一下。。"><a href="#最近博主无聊的开始想打打ctf，开个博客记录一下。。" class="headerlink" title="最近博主无聊的开始想打打ctf，开个博客记录一下。。"></a>最近博主无聊的开始想打打ctf，开个博客记录一下。。</h5><p>博主平时做前端开发做的比较多，ctf这边就打打web了。</p>
+<h6 id="1-按不下去的按钮和复制不了的文字"><a href="#1-按不下去的按钮和复制不了的文字" class="headerlink" title="1.按不下去的按钮和复制不了的文字"></a>1.按不下去的按钮和复制不了的文字</h6><p>按钮按不了，控制台获取这个input对象设置其disabled为false，点击就可以。<br><img src="https://img-blog.csdnimg.cn/ff7cc67d4e95419d9af361f412767a04.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6buE5Lyv5oGS,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>这题本意是用document.oncontextmenu=true设置右键可用，按下f12其实就好了。。<br><img src="https://img-blog.csdnimg.cn/4b8d8aa3aa01428f830b6ac89a903466.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6buE5Lyv5oGS,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<h5 id="2-robots协议"><a href="#2-robots协议" class="headerlink" title="2.robots协议"></a>2.robots协议</h5><p>robots.txt文件是一个文本文件，使用任何一个常见的文本编辑器，就可以创建和编辑它 。robots.txt是一个协议，而不是一个命令。robots.txt是搜索引擎中访问网站的时候要查看的第一个文件。robots.txt文件告诉爬虫程序在服务器上什么文件是可以被查看的。<br>当一个搜索爬虫访问一个站点时，它会首先检查该站点根目录下是否存在robots.txt，如果存在，搜索机器人就会按照该文件中的内容来确定访问的范围；如果该文件不存在，所有的搜索爬虫将能够访问网站上所有没有被口令保护的页面。<br>协议显示禁止抓取这个php文件，输入框直接访问该文件可得到flag。</p>
+<p><img src="https://img-blog.csdnimg.cn/7d38cc4f88ad42028b77899898ac5bc8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6buE5Lyv5oGS,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>robots协议文件写法举例：<br><img src="https://img-blog.csdnimg.cn/76ec7a197abc4dec894f92b407fe1c8b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6buE5Lyv5oGS,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<h5 id="3-简单的密码爆破"><a href="#3-简单的密码爆破" class="headerlink" title="3.简单的密码爆破"></a>3.简单的密码爆破</h5><p>不知道密码，用户名为admin。用burp抓包暴力破解。<br><img src="https://img-blog.csdnimg.cn/252f1e401f6249d497c5ee04cfda6860.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_18,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>用网上下载的字典进行爆破，发现当密码为123456时，返回的数据长度不一样。查看response即可发现flag。<br><img src="https://img-blog.csdnimg.cn/155f3e8edb45419d98feeb8f01062af7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<h4 id="暂时先更到这里了。。作简单的记录用，感觉这一块比码代码有意思多了，哈哈"><a href="#暂时先更到这里了。。作简单的记录用，感觉这一块比码代码有意思多了，哈哈" class="headerlink" title="暂时先更到这里了。。作简单的记录用，感觉这一块比码代码有意思多了，哈哈"></a>暂时先更到这里了。。作简单的记录用，感觉这一块比码代码有意思多了，哈哈</h4>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/24/js%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -715,14 +954,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

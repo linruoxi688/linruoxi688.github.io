@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="最近博主无聊的开始想打打ctf，开个博客记录一下。。博主平时做前端开发做的比较多，ctf这边就打打web了。 1.按不下去的按钮和复制不了的文字按钮按不了，控制台获取这个input对象设置其disabled为false，点击就可以。这题本意是用document.oncontextmenu&#x3D;true设置右键可用，按下f12其实就好了。。 2.robots协议robots.txt文件是一个文本文件，使">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTFweb浅打">
+<meta property="og:url" content="http://example.com/2022/05/07/CTF%20Web%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%8E%A9%E6%B3%95/index.html">
+<meta property="og:site_name" content="知足的小窝">
+<meta property="og:description" content="最近博主无聊的开始想打打ctf，开个博客记录一下。。博主平时做前端开发做的比较多，ctf这边就打打web了。 1.按不下去的按钮和复制不了的文字按钮按不了，控制台获取这个input对象设置其disabled为false，点击就可以。这题本意是用document.oncontextmenu&#x3D;true设置右键可用，按下f12其实就好了。。 2.robots协议robots.txt文件是一个文本文件，使">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ff7cc67d4e95419d9af361f412767a04.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6buE5Lyv5oGS,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4b8d8aa3aa01428f830b6ac89a903466.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6buE5Lyv5oGS,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/7d38cc4f88ad42028b77899898ac5bc8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6buE5Lyv5oGS,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/76ec7a197abc4dec894f92b407fe1c8b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6buE5Lyv5oGS,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/252f1e401f6249d497c5ee04cfda6860.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_18,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/155f3e8edb45419d98feeb8f01062af7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="article:published_time" content="2022-05-07T14:52:10.000Z">
+<meta property="article:modified_time" content="2022-09-05T02:31:45.648Z">
+<meta property="article:author" content="知足">
+<meta property="article:tag" content="c++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/ff7cc67d4e95419d9af361f412767a04.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6buE5Lyv5oGS,size_20,color_FFFFFF,t_70,g_se,x_16">
+
+<link rel="canonical" href="http://example.com/2022/05/07/CTF%20Web%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%8E%A9%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CTFweb浅打 | 知足的小窝</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">知足的小窝</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/07/CTF%20Web%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80%E7%8E%A9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%B8%86%E6%B3%A2.jfif">
+      <meta itemprop="name" content="知足">
+      <meta itemprop="description" content="珍惜当下，把握未来">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知足的小窝">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CTFweb浅打
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-07 22:52:10" itemprop="dateCreated datePublished" datetime="2022-05-07T22:52:10+08:00">2022-05-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-05 10:31:45" itemprop="dateModified" datetime="2022-09-05T10:31:45+08:00">2022-09-05</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h5 id="最近博主无聊的开始想打打ctf，开个博客记录一下。。"><a href="#最近博主无聊的开始想打打ctf，开个博客记录一下。。" class="headerlink" title="最近博主无聊的开始想打打ctf，开个博客记录一下。。"></a>最近博主无聊的开始想打打ctf，开个博客记录一下。。</h5><p>博主平时做前端开发做的比较多，ctf这边就打打web了。</p>
+<h6 id="1-按不下去的按钮和复制不了的文字"><a href="#1-按不下去的按钮和复制不了的文字" class="headerlink" title="1.按不下去的按钮和复制不了的文字"></a>1.按不下去的按钮和复制不了的文字</h6><p>按钮按不了，控制台获取这个input对象设置其disabled为false，点击就可以。<br><img src="https://img-blog.csdnimg.cn/ff7cc67d4e95419d9af361f412767a04.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6buE5Lyv5oGS,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>这题本意是用document.oncontextmenu=true设置右键可用，按下f12其实就好了。。<br><img src="https://img-blog.csdnimg.cn/4b8d8aa3aa01428f830b6ac89a903466.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6buE5Lyv5oGS,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<h5 id="2-robots协议"><a href="#2-robots协议" class="headerlink" title="2.robots协议"></a>2.robots协议</h5><p>robots.txt文件是一个文本文件，使用任何一个常见的文本编辑器，就可以创建和编辑它 。robots.txt是一个协议，而不是一个命令。robots.txt是搜索引擎中访问网站的时候要查看的第一个文件。robots.txt文件告诉爬虫程序在服务器上什么文件是可以被查看的。<br>当一个搜索爬虫访问一个站点时，它会首先检查该站点根目录下是否存在robots.txt，如果存在，搜索机器人就会按照该文件中的内容来确定访问的范围；如果该文件不存在，所有的搜索爬虫将能够访问网站上所有没有被口令保护的页面。<br>协议显示禁止抓取这个php文件，输入框直接访问该文件可得到flag。</p>
+<p><img src="https://img-blog.csdnimg.cn/7d38cc4f88ad42028b77899898ac5bc8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6buE5Lyv5oGS,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>robots协议文件写法举例：<br><img src="https://img-blog.csdnimg.cn/76ec7a197abc4dec894f92b407fe1c8b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6buE5Lyv5oGS,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<h5 id="3-简单的密码爆破"><a href="#3-简单的密码爆破" class="headerlink" title="3.简单的密码爆破"></a>3.简单的密码爆破</h5><p>不知道密码，用户名为admin。用burp抓包暴力破解。<br><img src="https://img-blog.csdnimg.cn/252f1e401f6249d497c5ee04cfda6860.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_18,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>用网上下载的字典进行爆破，发现当密码为123456时，返回的数据长度不一样。查看response即可发现flag。<br><img src="https://img-blog.csdnimg.cn/155f3e8edb45419d98feeb8f01062af7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAZXVwaHJpb2E=,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"></p>
+<h4 id="暂时先更到这里了。。作简单的记录用，感觉这一块比码代码有意思多了，哈哈"><a href="#暂时先更到这里了。。作简单的记录用，感觉这一块比码代码有意思多了，哈哈" class="headerlink" title="暂时先更到这里了。。作简单的记录用，感觉这一块比码代码有意思多了，哈哈"></a>暂时先更到这里了。。作简单的记录用，感觉这一块比码代码有意思多了，哈哈</h4>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/c/" rel="tag"># c++</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/24/js%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E7%A1%80/" rel="prev" title="js的一些基础">
+      <i class="fa fa-chevron-left"></i> js的一些基础
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/05/08/C++%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86/" rel="next" title="c++类与对象的知识">
+      c++类与对象的知识 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%80%E8%BF%91%E5%8D%9A%E4%B8%BB%E6%97%A0%E8%81%8A%E7%9A%84%E5%BC%80%E5%A7%8B%E6%83%B3%E6%89%93%E6%89%93ctf%EF%BC%8C%E5%BC%80%E4%B8%AA%E5%8D%9A%E5%AE%A2%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E3%80%82%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">最近博主无聊的开始想打打ctf，开个博客记录一下。。</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-%E6%8C%89%E4%B8%8D%E4%B8%8B%E5%8E%BB%E7%9A%84%E6%8C%89%E9%92%AE%E5%92%8C%E5%A4%8D%E5%88%B6%E4%B8%8D%E4%BA%86%E7%9A%84%E6%96%87%E5%AD%97"><span class="nav-number">1.1.</span> <span class="nav-text">1.按不下去的按钮和复制不了的文字</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-robots%E5%8D%8F%E8%AE%AE"><span class="nav-number">2.</span> <span class="nav-text">2.robots协议</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E7%AE%80%E5%8D%95%E7%9A%84%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4"><span class="nav-number">3.</span> <span class="nav-text">3.简单的密码爆破</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9A%82%E6%97%B6%E5%85%88%E6%9B%B4%E5%88%B0%E8%BF%99%E9%87%8C%E4%BA%86%E3%80%82%E3%80%82%E4%BD%9C%E7%AE%80%E5%8D%95%E7%9A%84%E8%AE%B0%E5%BD%95%E7%94%A8%EF%BC%8C%E6%84%9F%E8%A7%89%E8%BF%99%E4%B8%80%E5%9D%97%E6%AF%94%E7%A0%81%E4%BB%A3%E7%A0%81%E6%9C%89%E6%84%8F%E6%80%9D%E5%A4%9A%E4%BA%86%EF%BC%8C%E5%93%88%E5%93%88"><span class="nav-number"></span> <span class="nav-text">暂时先更到这里了。。作简单的记录用，感觉这一块比码代码有意思多了，哈哈</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="知足"
+      src="/images/%E5%B8%86%E6%B3%A2.jfif">
+  <p class="site-author-name" itemprop="name">知足</p>
+  <div class="site-description" itemprop="description">珍惜当下，把握未来</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021-07 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">知足</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
